@@ -65,8 +65,14 @@
     enable = true;
     oh-my-zsh = {
       enable = true;
+      plugins = [
+        "git"
+        "zsh-completions"
+        "zsh-autosuggestions"
+        "zsh-syntax-highlighting"
+      ];
     };
-    initExtra = ''
+    initContent = ''
       source ~/.config/zsh/config
     '';
   };
