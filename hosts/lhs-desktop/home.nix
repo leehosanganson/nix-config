@@ -7,6 +7,11 @@
   home.stateVersion = "24.05";
 
   home.packages = with pkgs; [
+    neovim
+    ripgrep
+    fd
+    lua-language-server
+    nixpkgs-fmt
     ghostty
     waybar
     rofi
@@ -35,7 +40,7 @@
 
   # Rebuild Alias
   programs.bash.shellAliases = {
-    rebuild = "bash ~/nixos-config/rebuild.sh";
+    rebuild = "bash ~/nix-config/rebuild.sh";
   };
 
   programs.home-manager.enable = true;

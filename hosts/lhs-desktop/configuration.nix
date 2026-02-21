@@ -77,15 +77,16 @@
     isNormalUser = true;
     description = "Anson Lee";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
     ];
   };
 
   # Programs
   programs.firefox.enable = true;
   programs.hyprland.enable = true;
+  programs.zsh.enable = true;
 
   environment.systemPackages = with pkgs; [
     vim
