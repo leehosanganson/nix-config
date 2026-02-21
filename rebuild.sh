@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CONF_FILES="$HOME/nix-config"
+CONF_FILES="$HOME/nixos-config"
 DOTFILES="$HOME/.dotfiles"
 
 set -e
