@@ -68,6 +68,7 @@
     syntaxHighlighting.enable = true;
     oh-my-zsh = {
       enable = true;
+      theme = "agnoster";
     };
     initContent = ''
       source ~/.config/zsh/config
