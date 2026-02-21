@@ -3,39 +3,43 @@
 {
   home.username = "ansonlee";
   home.homeDirectory = "/home/ansonlee";
-
   home.stateVersion = "24.05";
 
-  home.packages = with pkgs; [
-    # Compilers / Interpreters
-    gcc
-    zig
-    nodejs
-    python3
-
-    # CLI Tools
-    zoxide
-    fzf
-    kubectl
-    lazygit
-    fd
-    ripgrep
-
-    # Neovim
-    neovim
-    lua-language-server
-
-    # Nix
-    nil
-    nixpkgs-fmt
-
-    # Applciations
-    ghostty
-    google-chrome
-    discord
-    moonlight-qt
-    bitwarden-desktop
+  imports = [
+    ../../modules/theme/zen.nix
   ];
+
+  home.packages = with pkgs;
+    [
+      # Compilers / Interpreters
+      gcc
+      zig
+      nodejs
+      python3
+
+      # CLI Tools
+      zoxide
+      fzf
+      kubectl
+      lazygit
+      fd
+      ripgrep
+
+      # Neovim
+      neovim
+      lua-language-server
+
+      # Nix
+      nil
+      nixpkgs-fmt
+
+      # Applciations
+      ghostty
+      google-chrome
+      discord
+      moonlight-qt
+      bitwarden-desktop
+    ];
 
   # Shell
   programs.bash.shellAliases = {
@@ -55,7 +59,6 @@
       source ~/.config/zsh/config
     '';
   };
-
 
   programs.home-manager.enable = true;
 }

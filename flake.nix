@@ -24,7 +24,12 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.ansonlee = import ./hosts/lhs-desktop/home.nix;
+          home-manager.users.ansonlee = {
+            imports = [
+              ./hosts/lhs-desktop/home.nix
+              stylix.homeModules.stylix
+            ];
+          };
         }
         stylix.nixosModules.stylix
       ];

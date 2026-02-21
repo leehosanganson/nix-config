@@ -7,8 +7,6 @@
 {
   imports =
     [
-      ../../modules/theme/zen.nix
-
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
@@ -102,7 +100,7 @@
     wget
     git
     stow
-    inputs.zen-browser.packages.${pkgs.system}.default
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   system.stateVersion = "25.11"; # Did you read the comment?
