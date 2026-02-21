@@ -26,5 +26,5 @@ cd "$DOTFILES"
 chmod +x install.sh
 ./install.sh
 
-echo "dotfiles synced"nix
+echo "dotfiles synced"
 cd ~/nix-config
