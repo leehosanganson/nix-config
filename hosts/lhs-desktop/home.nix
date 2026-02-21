@@ -1,4 +1,4 @@
-{ config, pkgs, ...}:
+{ config, pkgs, ... }:
 
 {
   home.username = "ansonlee";
@@ -7,6 +7,9 @@
   home.stateVersion = "24.05";
 
   home.packages = with pkgs; [
+    gcc
+    zig
+
     neovim
     ripgrep
     fd
