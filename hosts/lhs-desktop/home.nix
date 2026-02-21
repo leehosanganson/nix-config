@@ -16,6 +16,7 @@
     # CLI Tools
     zoxide
     fzf
+    kubectl
 
     # Neovim
     neovim
@@ -25,6 +26,7 @@
     lazygit
 
     # Nix
+    nil
     nixpkgs-fmt
 
     # Applciations
@@ -54,9 +56,16 @@
     };
   };
 
-  # Rebuild Alias
+  # Shell
   programs.bash.shellAliases = {
     rebuild = "bash ~/nix-config/rebuild.sh";
+  };
+
+  programs.zsh = {
+    enable = true;
+    oh-my-zsh = {
+      enable = true;
+    };
   };
 
   programs.home-manager.enable = true;

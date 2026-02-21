@@ -1,30 +1,43 @@
 #!/usr/bin/env bash
 
-cd ~/nix-config
+CONF_FILES="$HOME/nix-config"
+DOTFILES="$HOME/.dotfiles"
 
+set -e
+
+# Unstow
+if [ -d "$DOTFILES" ]; then
+    echo "Unstowing dotfiles..."
+    cd "$DOTFILES" && ./uninstall.sh
+fi
+
+cd "$CONF_FILES"
+
+# Format
 nixpkgs-fmt *.nix hosts/**/*.nix
 
+# Stage
 git add .
 
+# Rebuild
 if sudo nixos-rebuild switch --flake .#$(hostname); then
+  # Restow
+  if [ ! -d "$DOTFILES" ]; then
+      echo "Cloning dotfiles..."
+      git clone https://github.com/leehosanganson/dotfiles.git "$DOTFILES"
+  fi
+
+  cd "$DOTFILES" && ./install.sh && cd "$CONF_FILES"
+
+  # Commit the changes
   gen=$(nixos-rebuild list-generations | grep current | awk '{print $1}')
   git commit -m "Generation $gen: $(date +'%Y-%m-%d %H:%M:%S')"
   git push origin main
+
   echo "$HOSTNAME rebuilt - gen $gen"
 else
   echo "Build Failed. Fix the errors above. Nothing was committed"
+  cd "$DOTFILES" && ./install.sh
   exit 1
 fi
 
-DOTFILES="$HOME/.dotfiles"
-if [ ! -d "$DOTFILES" ]; then
-    echo "Cloning dotfiles..."
-    git clone https://github.com/leehosanganson/dotfiles.git "$DOTFILES"
-fi
-
-cd "$DOTFILES"
-chmod +x install.sh
-./install.sh
-
-echo "dotfiles synced"
-cd ~/nix-config
