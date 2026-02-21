@@ -9,7 +9,7 @@
   home.packages = with pkgs; [
     ghostty
     waybar
-    rofi-wayland
+    rofi
     dunst
     libnotify
   ];
