@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd ~/nixos-config
+cd ~/nix-config
 
 nixpkgs-fmt *.nix hosts/**/*.nix
 
@@ -27,4 +27,4 @@ chmod +x install.sh
 ./install.sh
 
 echo "dotfiles synced"nix
-cd ~/nixos-concfig
+cd ~/nix-config
