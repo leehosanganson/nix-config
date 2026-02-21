@@ -11,9 +11,11 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs, home-manager, zen-browser, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, zen-browser, stylix, ... }@inputs: {
     nixosConfigurations.lhs-desktop = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
@@ -24,6 +26,7 @@
           home-manager.useUserPackages = true;
           home-manager.users.ansonlee = import ./hosts/lhs-desktop/home.nix;
         }
+        stylix.nixosModules.stylix
       ];
     };
   };
