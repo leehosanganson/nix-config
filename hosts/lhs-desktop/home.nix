@@ -33,5 +33,10 @@
     };
   };
 
+  # Rebuild Alias
+  programs.bash.shellAliases = {
+    rebuild = "bash ~/nixos-config/rebuild.sh";
+  };
+
   programs.home-manager.enable = true;
 }
