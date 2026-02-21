@@ -15,23 +15,14 @@
     stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs, home-manager, zen-browser, stylix, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations.lhs-desktop = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
         ./hosts/lhs-desktop/configuration.nix
         home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.ansonlee = {
-            imports = [
-              ./hosts/lhs-desktop/home.nix
-              stylix.homeModules.stylix
-            ];
-          };
-        }
-        stylix.nixosModules.stylix
+        inputs.stylix.nixosModules.stylix
       ];
     };
   };
