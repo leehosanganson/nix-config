@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo nixos-rebuild switch --flake .#lhs-nix
+sudo nixos-rebuild switch --flake .#lhs-desktop
 echo "nixos rebuilt"
 
 DOTFILES="$HOME/.dotfiles"

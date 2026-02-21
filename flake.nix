@@ -8,15 +8,15 @@
   };
 
   outputs = { self, nixpkgs, home-manager, ...}@inputs: {
-    nixosConfigurations.lhs-nix-staging = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.lhs-desktop = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
-        ./hosts/lhs-nix-staging/configuration.nix
+        ./hosts/lhs-desktop/configuration.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.ansonlee = import ./hosts/lhs-nix-staging/home.nix;
+          home-manager.users.ansonlee = import ./hosts/lhs-desktop/home.nix;
         }
       ];
     };
