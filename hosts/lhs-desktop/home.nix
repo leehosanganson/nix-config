@@ -39,7 +39,7 @@
 
   # Shell
   programs.bash.shellAliases = {
-    rebuild = "bash ~/nix-config/rebuild.sh";
+    rebuild = "bash ~/nixos-config/rebuild.sh";
   };
 
   programs.zsh = {
