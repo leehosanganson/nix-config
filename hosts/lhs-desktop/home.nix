@@ -63,14 +63,11 @@
 
   programs.zsh = {
     enable = true;
+    enableCompletion = true;
+    enableAutosuggestions = true;
+    syntaxHighlighting.enable = true;
     oh-my-zsh = {
       enable = true;
-      plugins = [
-        "git"
-        "zsh-completions"
-        "zsh-autosuggestions"
-        "zsh-syntax-highlighting"
-      ];
     };
     initContent = ''
       source ~/.config/zsh/config
