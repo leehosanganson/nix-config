@@ -66,7 +66,7 @@
     oh-my-zsh = {
       enable = true;
     };
-    initExtra = ''
+    initContent = ''
       source ~/.config/zsh/config
     '';
   };
