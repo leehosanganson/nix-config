@@ -7,14 +7,27 @@
   home.stateVersion = "24.05";
 
   home.packages = with pkgs; [
+    # Compilers / Interpreters
     gcc
     zig
+    nodejs
+    python3
 
+    # CLI Tools
+    zoxide
+    fzf
+
+    # Neovim
     neovim
     ripgrep
     fd
     lua-language-server
+    lazygit
+
+    # Nix
     nixpkgs-fmt
+
+    # Applciations
     ghostty
     waybar
     rofi
