@@ -31,6 +31,10 @@
 
     # Applciations
     ghostty
+    google-chrome
+    discord
+    moonlight-qt
+    bitwarden-desktop
   ];
 
   # Shell
