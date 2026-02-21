@@ -30,7 +30,7 @@ if sudo nixos-rebuild switch --flake .#$(hostname); then
   cd "$DOTFILES" && ./install.sh && cd "$CONF_FILES"
 
   # Commit the changes
-  gen=$(nixos-rebuild list-generations | grep current | awk '{print $1}')
+  gen=$(nixos-rebuild list-generations | grep True | awk '{print $1}')
   git commit -m "Generation $gen: $(date +'%Y-%m-%d %H:%M:%S')"
   git push origin main
 

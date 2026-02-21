@@ -66,7 +66,11 @@
     oh-my-zsh = {
       enable = true;
     };
+    initExtra = ''
+      source ~/.config/zsh/config
+    '';
   };
+
 
   programs.home-manager.enable = true;
 }
