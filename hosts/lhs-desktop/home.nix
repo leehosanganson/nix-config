@@ -11,6 +11,7 @@
     ../../modules/programs/dotfiles.nix
     ../../modules/programs/neovim.nix
     ../../modules/programs/shell.nix
+    ./secrets
   ];
 
   home.packages = with pkgs; [
