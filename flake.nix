@@ -4,25 +4,39 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix.url = "github:danth/stylix";
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, ... }@inputs: {
     nixosConfigurations.lhs-desktop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
+        inputs.home-manager.nixosModules.home-manager
+        {
+          home-manager.users.ansonlee = {
+            imports = [
+              ./hosts/lhs-desktop/home.nix
+              inputs.stylix.homeModules.stylix
+            ];
+          };
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+        }
         ./hosts/lhs-desktop/configuration.nix
-        home-manager.nixosModules.home-manager
-        inputs.stylix.nixosModules.stylix
       ];
     };
   };

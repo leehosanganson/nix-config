@@ -3,11 +3,7 @@
 {
   home.username = "ansonlee";
   home.homeDirectory = "/home/ansonlee";
-  home.stateVersion = "24.05";
-
-  imports = [
-    ../../modules/theme/zen.nix
-  ];
+  home.stateVersion = "25.11";
 
   home.packages = with pkgs;
     [
