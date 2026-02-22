@@ -7,7 +7,7 @@
   ];
 
   sops = {
-    defaultSopsFile = ./secrets.yaml;
+    defaultSopsFile = "${inputs.dotfiles}/secrets/secrets.yaml";
     age.keyFile = "/home/ansonlee/.config/sops/age/keys.txt";
     secrets = {
       "my_password" = { };

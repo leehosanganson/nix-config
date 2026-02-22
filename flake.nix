@@ -11,6 +11,10 @@
     zen-browser.url = "github:youwen5/zen-browser-flake";
     stylix.url = "github:nix-community/stylix";
     sops-nix.url = "github:Mic92/sops-nix";
+    dotfiles = {
+      url = "github:leehosanganson/dotfiles";
+      flake = false;
+    };
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs: {
