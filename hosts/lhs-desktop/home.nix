@@ -12,6 +12,7 @@
       zig
       nodejs
       python3
+      rustc
 
       # CLI Tools
       zoxide
