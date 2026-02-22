@@ -23,6 +23,8 @@
     options usbhid mousepoll=2
   '';
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
   # Networking
   networking.networkmanager.enable = true;
