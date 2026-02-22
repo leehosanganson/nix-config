@@ -24,6 +24,7 @@
       ripgrep
       btop
       iftop
+      unzip
 
       # Neovim
       neovim
