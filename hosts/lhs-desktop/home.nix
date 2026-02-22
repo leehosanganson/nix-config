@@ -13,6 +13,7 @@
       nodejs
       python3
       rustc
+      cargo
 
       # CLI Tools
       zoxide
