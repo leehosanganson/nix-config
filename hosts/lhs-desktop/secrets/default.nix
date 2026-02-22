@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, config, ... }: {
   imports = [ inputs.sops-nix.homeManagerModules.sops ];
 
   home.packages = with pkgs; [
@@ -11,10 +11,10 @@
     age.keyFile = "/home/ansonlee/.config/sops/age/keys.txt";
     secrets = {
       "my_password" = {
-        path = "~/.config/example.txt";
+        path = "${config.home.homeDirectory}/example.txt";
       };
       "another_password" = {
-        path = "~/.config/example2.txt";
+        path = "${config.home.homeDirectory}/example2.txt";
       };
     };
   };
