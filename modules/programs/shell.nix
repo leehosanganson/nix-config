@@ -17,9 +17,9 @@
     '';
   };
 
+
   home.packages = with pkgs; [
     ghostty
-    tmux
     btop
     ripgrep
     fd
@@ -29,5 +29,10 @@
     kubectl
     iftop
     unzip
+
+    # tmux
+    tmux
+    tmuxPlugins.cpu
+    tmuxPlugins.catppuccin
   ];
 }
