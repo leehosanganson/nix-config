@@ -30,7 +30,10 @@
       stylua
       selene
       nil
+      clang-tools
       rust-analyzer
+      helm-ls
+      dockerfile-language-server
 
       # Nix
       nixpkgs-fmt
