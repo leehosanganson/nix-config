@@ -20,6 +20,8 @@
       lazygit
       fd
       ripgrep
+      btop
+      iftop
 
       # Neovim
       neovim
