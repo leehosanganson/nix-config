@@ -26,6 +26,8 @@
       # Neovim
       neovim
       lua-language-server
+      stylua
+      selene
 
       # Nix
       nil
