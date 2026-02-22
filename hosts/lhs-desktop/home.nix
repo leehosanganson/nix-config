@@ -25,6 +25,7 @@
       btop
       iftop
       unzip
+      tmux
 
       # Neovim
       neovim
