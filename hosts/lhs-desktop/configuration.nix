@@ -17,6 +17,7 @@
   boot.extraModprobeConfig = ''
     options iwlwifi power_save=0
     options iwlmvm power_scheme=1
+    options usbhid mousepoll=2
   '';
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
