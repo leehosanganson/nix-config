@@ -14,11 +14,17 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.extraModprobeConfig = ''
+    options iwlwifi power_save=0
+    options iwlmvm power_scheme=1
+  '';
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Networking
   networking.networkmanager.enable = true;
   networking.hostName = "lhs-desktop"; # Define your hostname.
   networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.wifi.powersave = false;
 
   # Hardware
   hardware.graphics = {
