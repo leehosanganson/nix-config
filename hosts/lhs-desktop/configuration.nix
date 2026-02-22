@@ -91,8 +91,6 @@
   };
 
   # Programs
-  programs.firefox.enable = true;
-  # programs.hyprland.enable = true;
   programs.zsh.enable = true;
 
   environment.systemPackages = with pkgs; [
@@ -102,6 +100,21 @@
     stow
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
+
+  # programs.hyprland =
+  #   {
+  #     enable = true;
+  #     xwayland = true;
+  #   };
+
+  # xdg.portal = {
+  #   enable = true;
+  #   extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+  # };
+
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
 
   system.stateVersion = "25.11"; # Did you read the comment?
 }
