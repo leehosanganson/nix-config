@@ -35,6 +35,7 @@
           };
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "bak";
         }
         ./hosts/lhs-desktop/configuration.nix
       ];

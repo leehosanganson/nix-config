@@ -35,6 +35,7 @@
       discord
       moonlight-qt
       bitwarden-desktop
+      steam
     ];
 
   # Shell
