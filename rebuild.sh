@@ -14,7 +14,7 @@ fi
 cd "$CONF_FILES"
 
 # Format
-nixpkgs-fmt *.nix hosts/**/*.nix
+nixpkgs-fmt *.nix
 
 # Stage
 git add .
