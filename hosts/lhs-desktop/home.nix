@@ -5,56 +5,57 @@
   home.homeDirectory = "/home/ansonlee";
   home.stateVersion = "25.11";
 
-  home.packages = with pkgs;
-    [
-      # Compilers / Interpreters
-      gcc
-      zig
-      nodejs
-      python3
-      rustc
-      cargo
+  home.packages = with pkgs; [
+    # Compilers / Interpreters
+    gcc
+    zig
+    nodejs
+    python3
+    rustc
+    cargo
 
-      # CLI Tools
-      zoxide
-      fzf
-      kubectl
-      lazygit
-      fd
-      ripgrep
-      btop
-      iftop
-      unzip
-      tmux
+    # CLI Tools
+    zoxide
+    fzf
+    kubectl
+    lazygit
+    fd
+    ripgrep
+    btop
+    iftop
+    unzip
+    tmux
 
-      # Neovim
-      neovim
-      lua-language-server
-      stylua
-      selene
-      nil
-      clang-tools
-      rust-analyzer
-      helm-ls
-      dockerfile-language-server
+    # Neovim
+    neovim
+    lua-language-server
+    stylua
+    selene
+    nil
+    clang-tools
+    rust-analyzer
+    helm-ls
+    dockerfile-language-server
 
-      # Nix
-      nixpkgs-fmt
+    # Nix
+    nixpkgs-fmt
 
-      # Applciations
-      ghostty
-      google-chrome
-      discord
-      moonlight-qt
-      bitwarden-desktop
-      steam
-    ];
+    # Applciations
+    ghostty
+    google-chrome
+    discord
+    moonlight-qt
+    bitwarden-desktop
+    steam
+  ];
 
   # Dotfiles
   home.file.".config/ghostty".source =
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/ghostty/.config/ghostty";
   home.file.".config/nvim".source =
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/nvim/.config/nvim";
+  home.file.".config/tmux".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/tmux/.config/tmux";
 
   # Shell
   programs.bash.shellAliases = {
