@@ -54,10 +54,9 @@
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/ghostty/.config/ghostty";
   home.file.".config/nvim".source =
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/nvim/.config/nvim";
-  home.file.".config/tmux".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/tmux/.config/tmux";
+  home.file."tmux.conf".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/tmux/.config/tmux/tmux.conf";
 
-  # Shell
   programs.bash.shellAliases = {
     rebuild = "bash ~/nixos-config/rebuild.sh";
   };
@@ -74,6 +73,14 @@
     initContent = ''
       source ~/.config/zsh/config
     '';
+  };
+
+  programs.tmux = {
+    enable = true;
+    plugins = with pkgs.tmuxPlugins; [
+      catppuccin
+      cpu
+    ];
   };
 
   programs.home-manager.enable = true;
