@@ -49,6 +49,12 @@
       steam
     ];
 
+  # Dotfiles
+  home.file.".config/ghostty".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/ghostty/.config/ghostty";
+  home.file.".config/nvim".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/nvim/.config/nvim";
+
   # Shell
   programs.bash.shellAliases = {
     rebuild = "bash ~/nixos-config/rebuild.sh";
@@ -67,12 +73,6 @@
       source ~/.config/zsh/config
     '';
   };
-
-  # Dotfiles
-  home.file.".config/ghostty".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/ghostty/.config/ghostty";
-  home.file.".config/nvim".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/nvim/.config/nvim";
 
   programs.home-manager.enable = true;
 }
