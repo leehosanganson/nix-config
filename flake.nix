@@ -10,6 +10,7 @@
     };
     zen-browser.url = "github:youwen5/zen-browser-flake";
     stylix.url = "github:nix-community/stylix";
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs: {
@@ -26,6 +27,7 @@
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "bak";
         }
+        inputs.sops-nix.nixosModules.sops
       ];
     };
   };

@@ -34,4 +34,9 @@
 
   programs.zsh.enable = true;
   environment.systemPackages = with pkgs; [ vim wget git stow ];
+
+  environment.variables = {
+    EDITOR = "vim";
+    VISUAL = "vim";
+  };
 }

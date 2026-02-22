@@ -48,5 +48,7 @@
     iftop
     unzip
     tmux
+    sops
+    age
   ];
 }
