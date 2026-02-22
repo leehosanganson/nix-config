@@ -25,8 +25,7 @@
 
   config.stylix = {
     enable = true;
-
-    targets.kde.enable = true;
+    autoEnable = true;
 
     # See https://tinted-theming.github.io/tinted-gallery/ for more schemes
     base16Scheme = {

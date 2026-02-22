@@ -5,9 +5,9 @@
   home.homeDirectory = "/home/ansonlee";
   home.stateVersion = "25.11";
 
-  imports = [
-    ../../modules/theme/zen.nix
-  ];
+  # imports = [
+  #   ../../modules/theme/zen.nix
+  # ];
 
   home.packages = with pkgs;
     [

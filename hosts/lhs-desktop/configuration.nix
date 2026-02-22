@@ -92,7 +92,7 @@
 
   # Programs
   programs.firefox.enable = true;
-  programs.hyprland.enable = true;
+  # programs.hyprland.enable = true;
   programs.zsh.enable = true;
 
   environment.systemPackages = with pkgs; [
