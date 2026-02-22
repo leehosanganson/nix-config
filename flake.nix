@@ -8,36 +8,24 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    zen-browser.url = "github:youwen5/zen-browser-flake";
+    stylix.url = "github:nix-community/stylix";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations.lhs-desktop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
-        inputs.home-manager.nixosModules.home-manager
+        ./hosts/lhs-desktop
+        home-manager.nixosModules.home-manager
         {
-          home-manager.users.ansonlee = {
-            imports = [
-              ./hosts/lhs-desktop/home.nix
-              inputs.stylix.homeModules.stylix
-            ];
-          };
+          home-manager.users.ansonlee = ./hosts/lhs-desktop/home.nix;
+          home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "bak";
         }
-        ./hosts/lhs-desktop/configuration.nix
       ];
     };
   };
