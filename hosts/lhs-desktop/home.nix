@@ -59,8 +59,8 @@
     '';
   };
 
-  home.file.".config/ghostty/config".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/ghostty/config";
+  home.file.".config/ghostty".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/ghostty/.config/ghostty";
 
   programs.home-manager.enable = true;
 }
