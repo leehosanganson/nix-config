@@ -19,9 +19,20 @@
 
   home.activation = {
     installTpm = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-        ${pkgs.git}/bin/git clone https://github.com/tmux-plugins/tpm "$HOME/.config/tmux/plugins/tpm"
+      TPM_PATH="$HOME/.config/tmux/plugins/tpm"
+      TMUX_CONF="$HOME/.config/tmux/tmux.conf"
+      
+      # 1. Ensure TPM exists
+      if [ ! -d "$TPM_PATH" ]; then
+        ${pkgs.git}/bin/git clone https://github.com/tmux-plugins/tpm "$TPM_PATH"
       fi
+
+      # 2. Run installer with tmux in the PATH
+      # We add pkgs.tmux and pkgs.git to the PATH just for this execution
+      export PATH="${pkgs.tmux}/bin:${pkgs.git}/bin:$PATH"
+      
+      # We point directly to your config file to bypass auto-discovery issues
+      TMUX_CONF="$TMUX_CONF" $TPM_PATH/bin/install_plugins
     '';
   };
 
