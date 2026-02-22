@@ -10,12 +10,12 @@
     defaultSopsFile = "${inputs.dotfiles}/secrets/secrets.yaml";
     age.keyFile = "/home/ansonlee/.config/sops/age/keys.txt";
     secrets = {
-      "my_password" = {
-        path = "${config.home.homeDirectory}/example.txt";
-      };
-      "another_password" = {
-        path = "${config.home.homeDirectory}/example2.txt";
-      };
+      # "my_password" = {
+      #   path = "${config.home.homeDirectory}/example.txt";
+      # };
+      # "another_password" = {
+      #   path = "${config.home.homeDirectory}/example2.txt";
+      # };
     };
   };
 }
