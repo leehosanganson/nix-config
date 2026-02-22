@@ -29,9 +29,10 @@
       lua-language-server
       stylua
       selene
+      nil
+      rust-analyzer
 
       # Nix
-      nil
       nixpkgs-fmt
 
       # Applciations
