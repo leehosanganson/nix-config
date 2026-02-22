@@ -26,6 +26,8 @@
   config.stylix = {
     enable = true;
 
+    targets.kde.enable = true;
+
     # See https://tinted-theming.github.io/tinted-gallery/ for more schemes
     base16Scheme = {
       base00 = "090E13"; # Default Background
