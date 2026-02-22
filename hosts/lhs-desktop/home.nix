@@ -75,13 +75,5 @@
     '';
   };
 
-  programs.tmux = {
-    enable = true;
-    plugins = with pkgs.tmuxPlugins; [
-      catppuccin
-      cpu
-    ];
-  };
-
   programs.home-manager.enable = true;
 }
