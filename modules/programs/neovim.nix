@@ -16,5 +16,9 @@
     nixd
     statix
     nixpkgs-fmt
+
+    # plugins
+    tree-sitter
+    gdu
   ];
 }
