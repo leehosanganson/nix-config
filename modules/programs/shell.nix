@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ lib, pkgs, ... }: {
   programs.bash.shellAliases = {
     rebuild = "bash ~/nixos-config/rebuild.sh";
   };
@@ -17,6 +17,13 @@
     '';
   };
 
+  home.activation = {
+    installTpm = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+        ${pkgs.git}/bin/git clone https://github.com/tmux-plugins/tpm "$HOME/.config/tmux/plugins/tpm"
+      fi
+    '';
+  };
 
   home.packages = with pkgs; [
     ghostty
@@ -29,10 +36,6 @@
     kubectl
     iftop
     unzip
-
-    # tmux
     tmux
-    tmuxPlugins.cpu
-    tmuxPlugins.catppuccin
   ];
 }
