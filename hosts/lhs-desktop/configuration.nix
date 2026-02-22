@@ -81,9 +81,6 @@
     pulse.enable = true;
   };
 
-  # Mouse
-  services.ratbagd.enable = true;
-
   users.users.ansonlee = {
     isNormalUser = true;
     description = "Anson Lee";
