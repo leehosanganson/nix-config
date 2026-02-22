@@ -24,6 +24,7 @@
   hardware.graphics = {
     enable = true;
   };
+  hardware.enableAllFirmware = true;
 
   # Nix Settings
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
