@@ -56,6 +56,8 @@
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/nvim/.config/nvim";
   home.file."tmux.conf".source =
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/tmux/.config/tmux/tmux.conf";
+  home.file.".config/zsh/config".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/zsh/.config/zsh/config";
 
   programs.bash.shellAliases = {
     rebuild = "bash ~/nixos-config/rebuild.sh";
