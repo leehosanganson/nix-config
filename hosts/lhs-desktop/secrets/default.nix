@@ -13,6 +13,4 @@
       "my_password" = { };
     };
   };
-
-  systemd.user.services.mbsync.Unit.After = [ "sops-nix.service" ];
 }
