@@ -7,8 +7,11 @@
   ];
 
   sops = {
-    defaultSopsFile = "./secrets.yaml";
-    age.keyFile = "/var/lib/sops-nix/key.txt";
+    defaultSopsFile = ./secrets.yaml;
+    age.keyFile = "/home/ansonlee/.config/sops/age/keys.txt";
+    secrets = {
+      "my_password" = { };
+    };
   };
 
   systemd.user.services.mbsync.Unit.After = [ "sops-nix.service" ];
