@@ -10,12 +10,12 @@
     defaultSopsFile = "${inputs.dotfiles}/secrets/secrets.yaml";
     age.keyFile = "/home/ansonlee/.config/sops/age/keys.txt";
     secrets = {
-      # "my_password" = {
-      #   path = "${config.home.homeDirectory}/example.txt";
-      # };
-      # "another_password" = {
-      #   path = "${config.home.homeDirectory}/example2.txt";
-      # };
+      "opencode_auth" = {
+        path = "${config.home.homeDirectory}/.local/share/opencode/auth.json";
+      };
     };
   };
+
+  # Dummy file for secrets path
+  home.file."local/share/opencode/.keep".text = "";
 }

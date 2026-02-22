@@ -33,10 +33,36 @@
   };
 
   programs.zsh.enable = true;
-  environment.systemPackages = with pkgs; [ vim wget git stow ];
 
   environment.variables = {
     EDITOR = "vim";
     VISUAL = "vim";
+    TERMINAL = "ghostty";
+    TERM = "ghostty";
+    BROWSER = "zen";
   };
+
+  environment.systemPackages = with pkgs; [
+    vim
+    wget
+    git
+    fd
+    fzf
+    gcc
+    file
+    git-ignore
+    xdg-utils
+    curl
+    gnupg
+    openssl
+    jq
+    go
+    comma
+    zip
+    unzip
+    pfetch
+    unrar
+    btop
+    iftop
+  ];
 }

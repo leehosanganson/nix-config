@@ -9,6 +9,7 @@ set -e
 if [ ! -d "$DOTFILES" ]; then
     echo "Cloning dotfiles..."
     git clone https://github.com/leehosanganson/dotfiles.git "$DOTFILES"
+fi
 
 cd "$CONF_FILES"
 

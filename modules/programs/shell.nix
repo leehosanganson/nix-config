@@ -38,17 +38,10 @@
 
   home.packages = with pkgs; [
     ghostty
-    btop
     ripgrep
-    fd
     lazygit
     zoxide
-    fzf
     kubectl
-    iftop
-    unzip
     tmux
-    sops
-    age
   ];
 }
