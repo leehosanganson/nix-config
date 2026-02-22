@@ -1,9 +1,8 @@
 # https://github.com/anotherhadi/nixy/blob/main/themes/zen.nix
-{
-  lib,
-  pkgs,
-  config,
-  ...
+{ lib
+, pkgs
+, config
+, ...
 }: {
   options.theme = lib.mkOption {
     type = lib.types.attrs;

@@ -1,4 +1,4 @@
-{ pkgs, ...}: {
+{ pkgs, ... }: {
   programs.bash.shellAliases = {
     rebuild = "bash ~/nixos-config/rebuild.sh";
   };

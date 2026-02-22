@@ -11,7 +11,7 @@
     yaml-language-server
     kube-linter
     prettier
-    
+
     # Nix
     nixd
     statix

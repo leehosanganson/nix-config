@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  dotlink = path: config.lib.file.mkOutOfStoreSymlink 
+  dotlink = path: config.lib.file.mkOutOfStoreSymlink
     "${config.home.homeDirectory}/.dotfiles/${path}";
 in
 {

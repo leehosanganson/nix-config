@@ -14,7 +14,7 @@ fi
 cd "$CONF_FILES"
 
 # Format
-nixpkgs-fmt *.nix
+find . -path './.git' -prune -o -name "*.nix" -type f -print0 | xargs -0 nixpkgs-fmt
 
 # Stage
 git add .
