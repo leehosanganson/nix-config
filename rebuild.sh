@@ -9,9 +9,17 @@ set -e
 if [ ! -d "$DOTFILES" ]; then
     echo "Cloning dotfiles..."
     git clone https://github.com/leehosanganson/dotfiles.git "$DOTFILES"
+else
+    echo "Syncing latest secrets from Dotfiles..."
+    # Optional: Pull latest changes if you want the script to be fully hands-off
+    cd "$DOTFILES" && git pull && cd "$CONF_FILES"
 fi
 
 cd "$CONF_FILES"
+
+# 2. Sync the Flake Lock
+echo "Updating dotfiles reference in NixOS..."
+nix flake update dotfiles
 
 # Format
 find . -path './.git' -prune -o -name "*.nix" -type f -print0 | xargs -0 nixpkgs-fmt
