@@ -8,6 +8,7 @@
 
     # k8s
     helm-ls
+    yaml-language-server
     kube-linter
     prettier
     
