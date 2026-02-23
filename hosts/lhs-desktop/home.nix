@@ -14,7 +14,7 @@
     ./secrets
 
     # if hyprland
-    # ../../modules/programs/hyprland-gui.nix
+    ../../modules/programs/hyprland-gui.nix
   ];
 
   home.packages = with pkgs; [

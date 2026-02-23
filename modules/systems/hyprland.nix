@@ -18,4 +18,13 @@
   };
 
   security.polkit.enable = true; # Required for screen sharing, etc.
+
+  # auto-start hyprland
+  services.xserver.displayManager.lightdm.enable = false;
+  services.getty.autologinUser = "ansonlee";
+  environment.loginShellInit = ''
+    # Launch Hyprland on TTY1, return to TTY when exiting
+    if [ "$(tty)" = "/dev/tty1" ]; then
+      Hyprland
+  '';
 }
