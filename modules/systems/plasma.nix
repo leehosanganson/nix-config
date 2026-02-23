@@ -1,13 +1,15 @@
-{ ... }: {
-  services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
+_: {
   services.desktopManager.plasma6.enable = true;
+
+  services.xserver = {
+    enable = true;
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
+  };
+  services.displayManager.sddm.enable = true;
 
   services.libinput.enable = true;
   services.libinput.mouse.accelProfile = "flat";
-
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
 }

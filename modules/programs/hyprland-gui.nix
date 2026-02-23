@@ -11,8 +11,8 @@
         sensitivity = 0;
       };
 
-      # Keybinds - Super as $mainMod
-      "$mainMod" = "SUPER";
+      # Keybinds
+      "$mainMod" = "ALT";
 
       bind = [
         # Launchers
@@ -50,10 +50,6 @@
         "$mainMod SHIFT, 8, movetoworkspace, 8"
         "$mainMod SHIFT, 9, movetoworkspace, 9"
         "$mainMod SHIFT, 0, movetoworkspace, 10"
-
-        # Layout
-        "$mainMod, G, layoutmsg, swapnext"
-        "$mainMod SHIFT, R, layoutmsg, swapwithactive"
       ];
 
       bindm = [

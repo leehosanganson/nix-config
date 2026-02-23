@@ -5,9 +5,18 @@
     xwayland.enable = true;
   };
 
+  services.xserver = {
+    enable = true;
+    xkb.layout = "us";
+    xkb.variant = "";
+  };
+  services.displayManager.sddm.enable = true;
+
+  services.libinput.enable = true;
+  services.libinput.mouse.accelProfile = "flat";
+
   environment.sessionVariables = {
-    # Hint to Electron apps to use Wayland
-    NIXOS_OZONE_WL = "1";
+    NIXOS_OZONE_WL = "1"; # Hint to Electron apps to use Wayland
     GHOSTTY_EXPERIMENTAL_WAYLAND_ENABLE = "1";
     # WLR_NO_HARDWARE_CURSORS = "1"; # If Nvidia
   };
@@ -20,7 +29,6 @@
   security.polkit.enable = true; # Required for screen sharing, etc.
 
   # auto-start hyprland
-  services.xserver.displayManager.lightdm.enable = false;
   services.getty.autologinUser = "ansonlee";
   environment.loginShellInit = ''
     # Launch Hyprland on TTY1, return to TTY when exiting
