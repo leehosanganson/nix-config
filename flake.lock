@@ -73,15 +73,17 @@
       "locked": {
         "lastModified": 1771813036,
         "narHash": "sha256-iRzrKyJVMtBGvNdrcV5dqY9eCtvgeZeJ/JfmOrv/xlk=",
-        "owner": "leehosanganson",
-        "repo": "dotfiles",
+        "ref": "refs/heads/main",
         "rev": "6da2bfb75a66d5ea0af01f9e25c96910b067ad19",
-        "type": "github"
+        "revCount": 72,
+        "submodules": true,
+        "type": "git",
+        "url": "file:///home/ansonlee/nixos-config/dotfiles"
       },
       "original": {
-        "owner": "leehosanganson",
-        "repo": "dotfiles",
-        "type": "github"
+        "submodules": true,
+        "type": "git",
+        "url": "file:///home/ansonlee/nixos-config/dotfiles"
       }
     },
     "firefox-gnome-theme": {

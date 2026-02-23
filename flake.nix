@@ -12,11 +12,10 @@
     stylix.url = "github:nix-community/stylix";
     sops-nix.url = "github:Mic92/sops-nix";
     dotfiles = {
-      url = "github:leehosanganson/dotfiles";
+      url = "git+file:///home/ansonlee/nixos-config/dotfiles?submodules=1";
       flake = false;
     };
   };
-
   outputs = { nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations.lhs-desktop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";

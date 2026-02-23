@@ -1,16 +1,27 @@
-{ config, ... }:
+{ config, inputs, ... }:
 let
-  dotlink = path: config.lib.file.mkOutOfStoreSymlink
-    "${config.home.homeDirectory}/.dotfiles/${path}";
+  inherit (inputs) dotfiles;
+  create_symlink = path: config.lib.file.mkOutOfStoreSymlink "${dotfiles}/${path}";
+
+  configs = {
+    ghostty = "ghostty/.config/ghostty";
+    nvim = "nvim/.config/nvim";
+    zsh = "zsh/.config/zsh/config";
+    tmux = "tmux/.config/tmux/tmux.conf";
+    ai = "ai/.config/ai";
+    opencode = "ai/.config/opencode";
+    ticker = ".ticker.yaml";
+    hypr = "hyprland/.config/hypr";
+    rofi = "rofi/.config/rofi";
+    waybar = "waybar/.config/waybar";
+  };
 in
 {
-  home.file = {
-    ".config/ghostty".source = dotlink "ghostty/.config/ghostty";
-    ".config/nvim".source = dotlink "nvim/.config/nvim";
-    ".config/zsh/config".source = dotlink "zsh/.config/zsh/config";
-    "tmux.conf".source = dotlink "tmux/.config/tmux/tmux.conf";
-    ".config/ai".source = dotlink "ai/.config/ai";
-    ".config/opencode".source = dotlink "ai/.config/opencode";
-    ".ticker.yaml".source = dotlink "ticker/.ticker.yaml";
-  };
+  home.file = builtins.mapAttrs
+    (name: subpath: {
+      source = create_symlink subpath;
+      recursive = true;
+    })
+    configs;
 }
+
