@@ -71,11 +71,11 @@
     "dotfiles": {
       "flake": false,
       "locked": {
-        "lastModified": 1771804704,
-        "narHash": "sha256-ZfzuT+eIVSxyW8wVQPocu2brEp+WhDW0Y3d8OtGOyaE=",
+        "lastModified": 1771813036,
+        "narHash": "sha256-iRzrKyJVMtBGvNdrcV5dqY9eCtvgeZeJ/JfmOrv/xlk=",
         "owner": "leehosanganson",
         "repo": "dotfiles",
-        "rev": "db0eb980d42475b31dba5a2b88241f469b0cca31",
+        "rev": "6da2bfb75a66d5ea0af01f9e25c96910b067ad19",
         "type": "github"
       },
       "original": {

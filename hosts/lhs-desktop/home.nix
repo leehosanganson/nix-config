@@ -12,6 +12,9 @@
     ../../modules/programs/neovim.nix
     ../../modules/programs/shell.nix
     ./secrets
+
+    # if hyprland
+    ../../modules/programs/hyprland-gui.nix
   ];
 
   home.packages = with pkgs; [
