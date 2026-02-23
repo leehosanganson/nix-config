@@ -16,17 +16,40 @@
       ./hardware-configuration.nix
     ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.extraModprobeConfig = ''
-    options iwlwifi power_save=0
-    options iwlmvm power_scheme=1
-    options usbhid mousepoll=2
-  '';
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  # Bootloader
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      timeout = 0;
+    };
+
+    extraModprobeConfig = ''
+      options iwlwifi power_save=0
+      options iwlmvm power_scheme=1
+      options usbhid mousepoll=2
+    '';
+    kernelPackages = pkgs.linuxPackages_latest;
+
+    initrd = {
+      kernelModules = [ "amdgpu" ];
+      verbose = false;
+    };
+
+    kernelParams = [
+      "quiet"
+      "splash"
+      "vga=current"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
+      "boot.shell_on_fail"
+    ];
+
+    consoleLogLevel = 0;
+
+    plymouth.enable = true;
+  };
 
   # Networking
   networking.networkmanager.enable = true;
@@ -37,6 +60,7 @@
   # Hardware
   hardware.graphics.enable = true;
   hardware.enableAllFirmware = true;
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
   # Locale
   time.timeZone = "Europe/London";
