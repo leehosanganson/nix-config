@@ -17,7 +17,7 @@ let
   };
 in
 {
-  home.file = builtins.mapAttrs
+  xdg.configFile = builtins.mapAttrs
     (name: subpath: {
       source = create_symlink subpath;
       recursive = true;

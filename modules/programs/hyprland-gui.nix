@@ -1,9 +1,4 @@
 { pkgs, ... }: {
-  wayland.windowManager.hyprland = {
-    enable = true;
-    package = pkgs.hyprland;
-  };
-
   home.packages = with pkgs; [
     waybar
     swww
