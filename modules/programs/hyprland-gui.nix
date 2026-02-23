@@ -52,12 +52,6 @@
         "$mainMod SHIFT, 0, movetoworkspace, 10"
       ];
 
-      bindm = [
-        # Mouse moves
-        "$mainMod mouse:272, movewindow"
-        "$mainMod mouse:273, resizewindow"
-      ];
-
       exec-once = [
         "swww init"
         "waybar"
