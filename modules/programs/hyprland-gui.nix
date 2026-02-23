@@ -1,7 +1,7 @@
 { pkgs, ... }: {
-  xdg = {
-    enable = true;
-  };
+  # xdg = {
+  #   enable = true;
+  # };
   home.packages = with pkgs; [
     waybar
     swww

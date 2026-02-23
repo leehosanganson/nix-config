@@ -4,20 +4,20 @@ let
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink "${dotfiles}/${path}";
 
   configs = {
-    ghostty = "ghostty/.config/ghostty";
-    nvim = "nvim/.config/nvim";
-    zsh = "zsh/.config/zsh/config";
-    tmux = "tmux/.config/tmux/tmux.conf";
-    ai = "ai/.config/ai";
-    opencode = "ai/.config/opencode";
-    ticker = ".ticker.yaml";
-    hypr = "hyprland/.config/hypr";
-    rofi = "rofi/.config/rofi";
-    waybar = "waybar/.config/waybar";
-  };
+    # ".config/ghostty" = "ghostty/.config/ghostty";
+    ".config/nvim" = "nvim/.config/nvim";
+    ".config/zsh/config" = "zsh/.config/zsh/config";
+    # ".config/tmux/tmux.conf" = "tmux/.config/tmux/tmux.conf";
+    # ".config/ai" = "ai/.config/ai";
+    # ".config/opencode" = "ai/.config/opencode";
+    # ".ticker.yaml" = ".ticker.yaml";
+    # ".config/hypr" = "hyprland/.config/hypr";
+    # ".config/rofi" = "rofi/.config/rofi";
+    # ".config/waybar" = "waybar/.config/waybar";
+  }; # 
 in
 {
-  xdg.configFile = builtins.mapAttrs
+  home.file = builtins.mapAttrs
     (name: subpath: {
       source = create_symlink subpath;
       recursive = true;
