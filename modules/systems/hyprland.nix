@@ -16,6 +16,9 @@
   };
 
   environment.systemPackages = with pkgs; [
+    # bluetooth
+    blueman
+
     # audio
     pavucontrol
     wireplumber
