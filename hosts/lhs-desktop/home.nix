@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, config, ... }:
 
 {
   programs.home-manager.enable = true;
@@ -12,10 +12,6 @@
     ../../modules/programs/neovim.nix
     ../../modules/programs/shell.nix
     ./secrets.nix
-
-    # Theme
-    inputs.stylix.homeModules.stylix
-    ../../modules/themes/zen.nix
 
     # if hyprland
     ../../modules/programs/hyprland-gui.nix

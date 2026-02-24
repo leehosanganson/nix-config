@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ lib, pkgs, ... }: {
   home.packages = with pkgs; [
     kitty
     waybar
@@ -15,7 +15,7 @@
     thunar-archive-plugin
     qt5.qtwayland
     qt6.qtwayland
-    hyprpolkitagent
+    # hyprpolkitagent
   ];
 
   services.swayidle = {
@@ -26,5 +26,14 @@
       { timeout = 360; command = "hyprctl dispatch dpms"; }
     ];
   };
+
+  # services.hyprpaper = {
+  #   enable = true;
+  #   settings = {
+  #     ipc = "on";
+  #     splash = false;
+  #   };
+  # systemd.user.services.hyprpaper.Unit.After =
+  #   lib.mkForce "graphical-session.target";
 }
 

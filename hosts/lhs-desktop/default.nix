@@ -9,10 +9,12 @@
 
   imports =
     [
+      ./variables.nix
+      ../../modules/systems/sddm.nix
       ../../modules/systems/fonts.nix
 
       # Choose one
-      ../../modules/systems/plasma.nix
+      # ../../modules/systems/plasma.nix
       ../../modules/systems/hyprland.nix
 
       # Don't change

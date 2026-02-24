@@ -1,6 +1,6 @@
 # https://github.com/anotherhadi/nixy/blob/main/themes/zen.nix
-{ lib
-, pkgs
+{ pkgs
+, lib
 , config
 , ...
 }: {
@@ -22,9 +22,8 @@
     description = "Theme configuration options";
   };
 
-  config.lib.stylix = {
+  config.stylix = {
     enable = true;
-    autoEnable = true;
 
     # See https://tinted-theming.github.io/tinted-gallery/ for more schemes
     base16Scheme = {
@@ -62,6 +61,7 @@
     };
 
     polarity = "dark";
+
     image = pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/anotherhadi/awesome-wallpapers/refs/heads/main/app/static/wallpapers/nepal.png";
       sha256 = "sha256-0o2+B3+yA++PCyfNC+VqmaX959aKk3GuD7XpOq3SGcM=";
