@@ -20,15 +20,13 @@
     xwayland.enable = true;
     package = pkgs.hyprland;
 
-    extraConfig = ''
-      $terminal = ghostty
-      $fileManager = thunar
-      $menu = wofi --show drun
-      $reload_waybar = pkill waybar; waybar &
-      $snip = snip
-    '';
-
     settings = {
+      "$terminal" = "ghostty";
+      "$fileManager" = "thunar";
+      "$menu" = "wofi --show drun";
+      "$reload_waybar" = "pkill waybar; waybar &";
+      "$snip" = "snip";
+
       exec-once = [
         "$terminal"
         "nm-applet"
