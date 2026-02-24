@@ -12,7 +12,7 @@ let
     ".config/opencode" = "ai/.config/opencode";
     ".ticker.yaml" = ".ticker.yaml";
     ".config/hypr" = "hyprland/.config/hypr";
-    ".config/wofi" = "rofi/.config/wofi";
+    ".config/wofi" = "wofi/.config/wofi";
     ".config/waybar" = "waybar/.config/waybar";
   };
 in
