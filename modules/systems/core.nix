@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   # Nix
   nix = {
-    settings.experimental-features = [ "nix-command" "flakes" ];
+
     settings.auto-optimise-store = true;
 
     gc = {
@@ -23,6 +23,8 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    jack.enable = true;
+    wireplumber.enable = true;
   };
 
   users.users.ansonlee = {
