@@ -9,6 +9,8 @@
 
   imports =
     [
+      ../../modules/systems/fonts.nix
+
       # Choose one
       ../../modules/systems/plasma.nix
       ../../modules/systems/hyprland.nix
