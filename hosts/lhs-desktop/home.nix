@@ -14,6 +14,7 @@
     ./secrets.nix
 
     # if hyprland
+    ../../modules/programs/hyprland
     ../../modules/programs/hyprland-gui.nix
   ];
 

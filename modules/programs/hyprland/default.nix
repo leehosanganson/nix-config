@@ -6,7 +6,6 @@
   imports = [
     ./animations.nix
     ./keybindings.nix
-    ./polkitagent.nix
   ];
 
   home.packages = with pkgs; [
@@ -34,6 +33,7 @@
         "$terminal"
         "nm-applet"
         "waybar"
+        "systemctl --user start hyprpolkitagent.service"
         "systemctl --user enable --now hyprpaper.service"
       ];
 
