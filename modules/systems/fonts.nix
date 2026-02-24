@@ -1,14 +1,8 @@
-{ pkgs, ... }: {
-  fonts.packages = with pkgs; [
-    (nerd-fonts.override {
-      fonts = [
-        "jetbrains-mono"
-        "fira-mono"
-        "fira-code"
-        "hack"
-      ];
-    })
-
+_: {
+  fonts.packages = [
+    "nerd-fonts-jetbrains-mono"
+    "nerd-fonts-hack"
+    "fira-code"
   ];
 
   fonts.enableDefaultFonts = false;
