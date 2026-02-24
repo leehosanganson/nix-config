@@ -18,18 +18,13 @@
   ];
 
   home.packages = with pkgs; [
-    # Compilers / Interpreters
-    gcc
-    nodejs
-    python3
-    cargo
-
     # Applciations
     google-chrome
     discord
     moonlight-qt
     bitwarden-desktop
     steam
+    networkmanagerapplet
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

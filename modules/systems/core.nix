@@ -64,5 +64,8 @@
     unrar
     btop
     iftop
+    nodejs
+    python3
+    cargo
   ];
 }
