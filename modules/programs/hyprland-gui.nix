@@ -13,6 +13,8 @@
     hyprpaper
     thunar
     thunar-archive-plugin
+    qt5.qtwayland
+    qt6.qtwayland
   ];
 
   services.swayidle = {
