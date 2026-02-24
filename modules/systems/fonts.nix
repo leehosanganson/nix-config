@@ -6,4 +6,5 @@
   ];
 
   fonts.enableDefaultFonts = false;
+  fonts.fontconfig.enable = true;
 }
