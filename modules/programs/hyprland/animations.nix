@@ -1,6 +1,6 @@
-_:
+{ config, ... }:
 let
-  animationSpeed = "fast";
+  animationSpeed = config.theme.animation-speed;
 
   animationDuration =
     if animationSpeed == "slow"

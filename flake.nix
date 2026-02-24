@@ -22,7 +22,7 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./hosts/lhs-desktop
-        # inputs.stylix.nixosModules.stylix
+        inputs.stylix.nixosModules.stylix
         home-manager.nixosModules.home-manager
         {
           home-manager.users.ansonlee = ./hosts/lhs-desktop/home.nix;

@@ -4,7 +4,7 @@
 }: {
   imports = [
     # Choose your theme here:
-    # ../../modules/themes/zen.nix
+    ../../modules/themes/zen.nix
   ];
 
   config.var = {
