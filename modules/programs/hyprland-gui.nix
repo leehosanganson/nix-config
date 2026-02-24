@@ -15,7 +15,7 @@
     thunar-archive-plugin
     qt5.qtwayland
     qt6.qtwayland
-    # hyprpolkitagent
+    hyprpolkitagent
   ];
 
   services.swayidle = {
