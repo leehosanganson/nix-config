@@ -22,7 +22,7 @@
     description = "Theme configuration options";
   };
 
-  config.lib.stylix = {
+  config.stylix = {
     enable = true;
     autoEnable = true;
 

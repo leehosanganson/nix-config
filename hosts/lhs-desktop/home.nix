@@ -12,6 +12,9 @@
     ../../modules/programs/neovim.nix
     ../../modules/programs/shell.nix
     ./secrets
+
+    # Theme
+    inputs.stylix.homeManagerModules.stylix
     ../../modules/themes/zen.nix
 
     # if hyprland
