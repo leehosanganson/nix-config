@@ -15,6 +15,12 @@
     # WLR_NO_HARDWARE_CURSORS = "1"; # If Nvidia
   };
 
+  environment.systemPackages = with pkgs; [
+    # audio
+    pavucontrol
+    wireplumber
+  ];
+
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
