@@ -11,10 +11,10 @@
     ../../modules/programs/dotfiles.nix
     ../../modules/programs/neovim.nix
     ../../modules/programs/shell.nix
-    ./secrets
+    ./secrets.nix
 
     # Theme
-    inputs.stylix.homeManagerModules.stylix
+    inputs.stylix.homeModules.stylix
     ../../modules/themes/zen.nix
 
     # if hyprland
