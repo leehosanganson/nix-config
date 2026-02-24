@@ -63,6 +63,10 @@
   hardware.graphics.enable = true;
   hardware.enableAllFirmware = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
 
   # Locale
   time.timeZone = "Europe/London";
