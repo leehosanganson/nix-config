@@ -26,6 +26,7 @@
   environment.loginShellInit = ''
     # Launch Hyprland on TTY1, return to TTY when exiting
     if [ "$(tty)" = "/dev/tty1" ]; then
-      Hyprland
+      start-hyprland
+    fi
   '';
 }
