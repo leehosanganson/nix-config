@@ -3,6 +3,7 @@
   #   enable = true;
   # };
   home.packages = with pkgs; [
+    kitty
     waybar
     swww
     wofi
