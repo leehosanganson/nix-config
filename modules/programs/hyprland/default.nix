@@ -85,7 +85,7 @@
       };
 
       windowrule = [
-        "suppress_event maximize, match:class:.*"
+        "suppress_event maximize, match:class .*"
       ];
 
       misc = {
