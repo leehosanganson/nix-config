@@ -9,9 +9,6 @@
   services.libinput.enable = true;
   services.libinput.mouse.accelProfile = "flat";
 
-  # bluetooth
-  services.blueman.enable = true;
-
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1"; # Hint to Electron apps to use Wayland
     GHOSTTY_EXPERIMENTAL_WAYLAND_ENABLE = "1";
