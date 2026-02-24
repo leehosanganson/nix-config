@@ -1,7 +1,7 @@
 { config, inputs, ... }:
 let
-  inherit (inputs) dotfiles;
-  create_symlink = path: config.lib.file.mkOutOfStoreSymlink "${dotfiles}/${path}";
+  dotfiles = "${config.home.homeDirectory}/nixos-config/dotfiles";
+  create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
 
   configs = {
     ".config/ghostty" = "ghostty/.config/ghostty";
@@ -19,7 +19,7 @@ in
 {
   home.file = builtins.mapAttrs
     (name: subpath: {
-      source = create_symlink subpath;
+      source = create_symlink "${dotfiles}/${subpath}";
       recursive = true;
     })
     configs;
