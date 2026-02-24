@@ -11,10 +11,12 @@
     slurp
     wl-clipboard
     hyprpaper
+    hyprshot
+    hyprpicker
+    dconf
+    wayland-utils
     thunar
     thunar-archive-plugin
-    qt5.qtwayland
-    qt6.qtwayland
     hyprpolkitagent
   ];
 
