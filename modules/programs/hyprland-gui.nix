@@ -27,13 +27,8 @@
     ];
   };
 
-  # services.hyprpaper = {
-  #   enable = true;
-  #   settings = {
-  #     ipc = "on";
-  #     splash = false;
-  #   };
-  # systemd.user.services.hyprpaper.Unit.After =
-  #   lib.mkForce "graphical-session.target";
+  services.hyprpaper.enable = true;
+  systemd.user.services.hyprpaper.Unit.After =
+    lib.mkForce "graphical-session.target";
 }
 
