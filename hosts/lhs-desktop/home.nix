@@ -8,15 +8,15 @@
   home.stateVersion = "25.11";
 
   imports = [
-    ../../modules/programs/dotfiles.nix
-    ../../modules/programs/neovim.nix
-    ../../modules/programs/shell.nix
+    ../../modules/home/dotfiles.nix
+    ../../modules/home/neovim.nix
+    ../../modules/home/shell.nix
     ./variables.nix
     ./secrets.nix
 
     # if hyprland
-    ../../modules/programs/hyprland
-    ../../modules/programs/hyprland-gui.nix
+    ../../modules/home/hyprland
+    ../../modules/home/hyprland-gui.nix
   ];
 
   home.packages = with pkgs; [

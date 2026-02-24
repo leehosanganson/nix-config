@@ -11,7 +11,6 @@ let
     ".config/ai" = "ai/.config/ai";
     ".config/opencode" = "ai/.config/opencode";
     ".ticker.yaml" = ".ticker.yaml";
-    # ".config/hypr" = "hyprland/.config/hypr";
     ".config/wofi" = "wofi/.config/wofi";
     ".config/waybar" = "waybar/.config/waybar";
   };

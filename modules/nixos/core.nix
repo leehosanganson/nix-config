@@ -38,7 +38,7 @@
     EDITOR = "vim";
     VISUAL = "vim";
     TERMINAL = "ghostty";
-    TERM = "ghostty";
+    TERM = "xterm-256color";
     BROWSER = "zen";
   };
 

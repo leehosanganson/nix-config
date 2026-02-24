@@ -10,15 +10,15 @@
   imports =
     [
       ./variables.nix
-      ../../modules/systems/sddm.nix
-      ../../modules/systems/fonts.nix
+      ../../modules/nixos/sddm.nix
+      ../../modules/nixos/fonts.nix
 
       # Choose one
-      # ../../modules/systems/plasma.nix
-      ../../modules/systems/hyprland.nix
+      # ../../modules/nixos/plasma.nix
+      ../../modules/nixos/hyprland.nix
 
       # Don't change
-      ../../modules/systems/core.nix
+      ../../modules/nixos/core.nix
       ./hardware-configuration.nix
     ];
 
