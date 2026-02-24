@@ -30,6 +30,7 @@
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "bak";
         }
+        inputs.stylix.nixosModules.stylix
       ];
     };
   };

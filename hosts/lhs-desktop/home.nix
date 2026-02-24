@@ -12,6 +12,7 @@
     ../../modules/programs/neovim.nix
     ../../modules/programs/shell.nix
     ./secrets
+    ../../modules/themes/zen.nix
 
     # if hyprland
     ../../modules/programs/hyprland-gui.nix
