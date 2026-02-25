@@ -53,7 +53,6 @@
 
     fonts = {
       sizes = {
-        applications = 13;
         desktop = 13;
         popups = 13;
       };
