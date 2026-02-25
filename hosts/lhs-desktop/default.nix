@@ -35,7 +35,14 @@
       options iwlmvm power_scheme=1
       options usbhid mousepoll=2
     '';
+
     kernelPackages = pkgs.linuxPackages_latest;
+
+    kernelModules = [
+      "thunderbolt"
+      "usb4"
+      "amdgpu"
+    ];
 
     initrd = {
       kernelModules = [ "amdgpu" ];
@@ -43,13 +50,12 @@
     };
 
     kernelParams = [
-      "quiet"
-      "splash"
       "vga=current"
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
       "udev.log_priority=3"
       "boot.shell_on_fail"
+      "usb4=1"
     ];
 
     consoleLogLevel = 0;
@@ -66,7 +72,6 @@
   # Hardware
   hardware.graphics.enable = true;
   hardware.enableAllFirmware = true;
-  services.xserver.videoDrivers = [ "amdgpu" ];
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
