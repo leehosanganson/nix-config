@@ -5,6 +5,6 @@
     nerd-fonts.fira-code
   ];
 
-  fonts.enableDefaultPackages = false;
+  fonts.enableDefaultPackages = true;
   fonts.fontconfig.enable = true;
 }
