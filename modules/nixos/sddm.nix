@@ -22,22 +22,7 @@ let
       VirtualKeyboardButtonTextColor = "#${foreground}";
       DropdownBackgroundColor = "#${foreground}";
       HighlightBackgroundColor = "#${foreground}";
-      Background =
-        if "sakura_pixelart_light_static.png" == config.stylix.image
-        then
-          pkgs.fetchurl
-            {
-              url = "https://raw.githubusercontent.com/anotherhadi/awesome-wallpapers/refs/heads/main/app/static/wallpapers/sakura_pixelart_light_animated.gif";
-              sha256 = "sha256-qySDskjmFYt+ncslpbz0BfXiWm4hmFf5GPWF2NlTVB8=";
-            }
-        else if "cat-watching-the-star_pixelart_purple_static.png" == config.stylix.image
-        then
-          pkgs.fetchurl
-            {
-              url = "https://raw.githubusercontent.com/anotherhadi/awesome-wallpapers/refs/heads/main/app/static/wallpapers/cat-watching-the-star_pixelart_purple_animated.gif";
-              sha256 = "";
-            }
-        else "${toString config.stylix.image}";
+      Background = "${toString config.stylix.image}";
     };
   };
 in
