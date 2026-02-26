@@ -11,6 +11,7 @@ let
     ".config/ai" = "ai/.config/ai";
     ".config/opencode" = "ai/.config/opencode";
     ".ticker.yaml" = ".ticker.yaml";
+    ".config/start-up" = "start-up/.config/start-up";
     ".config/wofi" = "wofi/.config/wofi";
     ".config/waybar" = "waybar/.config/waybar";
   };
