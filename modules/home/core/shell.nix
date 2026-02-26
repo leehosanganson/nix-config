@@ -18,13 +18,6 @@
     '';
   };
 
-  programs.fastfetch = {
-    enable = true;
-    settings = {
-      preset = "nixos";
-    };
-  };
-
   home.activation = {
     installTpm = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       TPM_PATH="$HOME/.config/tmux/plugins/tpm"
