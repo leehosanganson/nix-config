@@ -27,13 +27,13 @@
       "$snip" = "snip";
 
       exec-once = [
-        "$terminal"
+        "fcitx5 -d"
         "nm-applet"
         "waybar"
-        "fcitx5 -d"
         "systemctl --user start hyprpolkitagent.service"
         "systemctl --user enable --now hyprpaper.service"
         "$HOME/.config/start-up/spawn-portrait-workspace.sh"
+        "$terminal"
       ];
 
       monitor = [
@@ -48,7 +48,15 @@
         "XDG_SESSION_TYPE,wayland"
         "XDG_SESSION_DESKTOP,Hyprland"
         "XCURSOR_THEME,Adwaita"
+
+        "XMODIFIERS,@im=fcitx"
+        "GTK_IM_MODULE,fcitx"
+        "QT_IM_MODULE,fcitx"
+        "GLFW_IM_MODULE,fcitx"
+        "SDL_IM_MODULE,fcitx"
+        "INPUT_METHOD,fcitx"
       ];
+
 
       cursor = {
         no_hardware_cursors = true;
