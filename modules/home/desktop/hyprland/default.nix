@@ -71,6 +71,12 @@
           passes = 1;
           vibrancy = 0.1696;
         };
+        glow = {
+          enabled = true;
+          width = 8;
+          intensity = 0.6;
+          transitions = true;
+        };
       };
 
       master = {
