@@ -23,7 +23,7 @@
       "$terminal" = "ghostty";
       "$fileManager" = "thunar";
       "$menu" = "wofi --show drun";
-      "$reload_waybar" = "pkill waybar; waybar &";
+      "$reload_waybar" = "$HOME/.config/waybar/scripts/reload.sh";
       "$snip" = "snip";
 
       exec-once = [
