@@ -22,7 +22,7 @@
     settings = {
       "$terminal" = "ghostty";
       "$fileManager" = "thunar";
-      "$menu" = "wofi --show drun";
+      "$menu" = "wofi --show drun --style $HOME/.config/wofi/styles.css";
       "$reload_waybar" = "$HOME/.config/waybar/scripts/reload.sh";
       "$snip" = "snip";
 
