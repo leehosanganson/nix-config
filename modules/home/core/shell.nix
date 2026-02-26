@@ -13,8 +13,16 @@
       theme = "agnoster";
     };
     initContent = ''
+      fastfetch
       source ~/.config/zsh/config
     '';
+  };
+
+  programs.fastfetch = {
+    enable = true;
+    settings = {
+      preset = "nixos";
+    };
   };
 
   home.activation = {
