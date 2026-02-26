@@ -72,6 +72,7 @@
   # Hardware
   hardware.graphics.enable = true;
   hardware.enableAllFirmware = true;
+  hardware.opengl.enable = true;
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;

@@ -95,6 +95,9 @@
         kb_layout = "us";
         follow_mouse = 1;
         sensitivity = 0;
+        aceel_profile = "flat";
+        force_no_accel = true;
+        apply_sens_to_raw = true;
         repeat_rate = 35;
         repeat_delay = 200;
         touchpad.natural_scroll = false;
