@@ -18,6 +18,7 @@
     thunar
     thunar-archive-plugin
     hyprpolkitagent
+    networkmanagerapplet
     cava
   ];
 
