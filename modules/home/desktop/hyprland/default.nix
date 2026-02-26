@@ -30,6 +30,7 @@
         "$terminal"
         "nm-applet"
         "waybar"
+        "fcitx5 -d"
         "systemctl --user start hyprpolkitagent.service"
         "systemctl --user enable --now hyprpaper.service"
         "$HOME/.config/start-up/spawn-portrait-workspace.sh"

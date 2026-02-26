@@ -13,6 +13,11 @@
       ../../modules/nixos/sddm.nix
       ../../modules/nixos/fonts.nix
 
+      # IME
+      ../../modules/ime
+      ../../modules/ime/jp.nix
+      ../../modules/ime/zh.nix
+
       # Choose one
       # ../../modules/nixos/plasma.nix
       ../../modules/nixos/hyprland.nix
@@ -79,7 +84,6 @@
 
   # Locale
   time.timeZone = "Europe/London";
-  i18n.defaultLocale = "en_GB.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_GB.UTF-8";
     LC_IDENTIFICATION = "en_GB.UTF-8";
