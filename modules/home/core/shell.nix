@@ -41,7 +41,7 @@
     ripgrep
     lazygit
     zoxide
-    kubectl
     tmux
+    fastfetch
   ];
 }
