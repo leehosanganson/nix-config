@@ -55,7 +55,7 @@
       general = {
         gaps_in = 2;
         gaps_out = 2;
-        border_size = 1;
+        border_size = 4;
         resize_on_border = false;
         allow_tearing = false;
         layout = "dwindle";
@@ -70,12 +70,6 @@
           size = 3;
           passes = 1;
           vibrancy = 0.1696;
-        };
-        glow = {
-          enabled = true;
-          width = 8;
-          intensity = 0.6;
-          transitions = true;
         };
       };
 
