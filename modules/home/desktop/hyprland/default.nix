@@ -49,16 +49,12 @@
         "XDG_SESSION_DESKTOP,Hyprland"
       ];
 
-      cursor = {
-        no_hardware_cursors = true;
-      };
-
       general = {
         gaps_in = 2;
         gaps_out = 2;
         border_size = 4;
         resize_on_border = false;
-        allow_tearing = false;
+        allow_tearing = true;
         layout = "dwindle";
       };
 
@@ -82,10 +78,17 @@
 
       windowrule = [
         "suppress_event maximize, match:class .*"
+
+        # Moonlight
+        "immediate, class:^(moonlight)$"
+        "noblur, class:^(moonlight)$"
+        "noshadow, class:^(moonlight)$"
+        "noanim, class:^(moonlight)$"
+        "opaque, class:^(moonlight)$"
+        "fullscreen, class:^(moonlight)$"
       ];
 
       misc = {
-        vfr = true;
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
         focus_on_activate = true;

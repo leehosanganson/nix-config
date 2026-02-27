@@ -60,7 +60,6 @@
 
     kernelParams = [
       "amdgpu.dc=1"
-      "amdgpu.exp_hw_support=1"
       "vga=current"
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
