@@ -80,12 +80,12 @@
         "suppress_event maximize, match:class .*"
 
         # Moonlight
-        "immediate, class:^(moonlight)$"
-        "noblur, class:^(moonlight)$"
-        "noshadow, class:^(moonlight)$"
-        "noanim, class:^(moonlight)$"
-        "opaque, class:^(moonlight)$"
-        "fullscreen, class:^(moonlight)$"
+        "immediate, ^(moonlight)$"
+        "noblur, ^(moonlight)$"
+        "noshadow, ^(moonlight)$"
+        "noanim, ^(moonlight)$"
+        "opaque, ^(moonlight)$"
+        "fullscreen, ^(moonlight)$"
       ];
 
       misc = {
