@@ -78,14 +78,6 @@
 
       windowrule = [
         "suppress_event maximize, match:class .*"
-
-        # Moonlight
-        "immediate, ^(moonlight)$"
-        "noblur, ^(moonlight)$"
-        "noshadow, ^(moonlight)$"
-        "noanim, ^(moonlight)$"
-        "opaque, ^(moonlight)$"
-        "fullscreen, ^(moonlight)$"
       ];
 
       misc = {
