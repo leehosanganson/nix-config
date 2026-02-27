@@ -3,5 +3,7 @@
     kdePackages.fcitx5-chinese-addons
     fcitx5-lua
     fcitx5-table-extra
+    rime-data
+    fcitx5-rime
   ];
 }
