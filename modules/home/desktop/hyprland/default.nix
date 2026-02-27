@@ -60,7 +60,6 @@
         resize_on_border = false;
         allow_tearing = false;
         layout = "dwindle";
-        scale_rules = 0;
       };
 
       decoration = {
