@@ -50,7 +50,10 @@
     ];
 
     initrd = {
-      kernelModules = [ "amdgpu" ];
+      kernelModules = [
+        "amdgpu"
+        "thunderbolt"
+      ];
       verbose = false;
     };
 
