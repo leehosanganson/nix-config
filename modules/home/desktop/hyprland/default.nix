@@ -49,7 +49,6 @@
         "XDG_SESSION_DESKTOP,Hyprland"
       ];
 
-
       cursor = {
         no_hardware_cursors = true;
       };
