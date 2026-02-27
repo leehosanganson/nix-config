@@ -48,10 +48,6 @@
         "XDG_SESSION_TYPE,wayland"
         "XDG_SESSION_DESKTOP,Hyprland"
         "XCURSOR_THEME,Adwaita"
-
-        "XMODIFIERS,@im=fcitx"
-        "GTK_IM_MODULE,fcitx"
-        "QT_IM_MODULE,fcitx"
       ];
 
 
