@@ -13,6 +13,7 @@ _:
         "$mainMod, D, exec, $menu"
         "$mainMod, R, exec, $reload_waybar"
         "$mainMod, S, exec, $snip"
+
         "$mainMod, F, fullscreen, 2"
         "$mainMod, h, movefocus, l"
         "$mainMod, j, movefocus, d"
@@ -22,6 +23,11 @@ _:
         "$mainMod SHIFT, j, movewindow, d"
         "$mainMod SHIFT, k, movewindow, u"
         "$mainMod SHIFT, l, movewindow, r"
+        "$mainMod CTRL, h, resizeactive, -10 0"
+        "$mainMod CTRL, j, resizeactive, 0 10"
+        "$mainMod CTRL, k, resizeactive, 0 -10"
+        "$mainMod CTRL, l, resizeactive, 10 0"
+
         "$mainMod, 1, workspace, 1"
         "$mainMod, 2, workspace, 2"
         "$mainMod, 3, workspace, 3"
@@ -32,6 +38,7 @@ _:
         "$mainMod, 8, workspace, 8"
         "$mainMod, 9, workspace, 9"
         "$mainMod, 0, workspace, 10"
+
         "$mainMod SHIFT, 1, movetoworkspace, 1"
         "$mainMod SHIFT, 2, movetoworkspace, 2"
         "$mainMod SHIFT, 3, movetoworkspace, 3"
@@ -42,6 +49,7 @@ _:
         "$mainMod SHIFT, 8, movetoworkspace, 8"
         "$mainMod SHIFT, 9, movetoworkspace, 9"
         "$mainMod SHIFT, 0, movetoworkspace, 10"
+
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
 
