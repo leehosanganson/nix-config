@@ -82,16 +82,7 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [
-      libva-utils
-      vulkan-loader
-      vulkan-validation-layers
-    ];
   };
-  environment.systemPackages = with pkgs; [
-    libva
-  ];
-  programs.gamemode.enable = true;
   hardware.enableAllFirmware = true;
   hardware.bluetooth = {
     enable = true;
