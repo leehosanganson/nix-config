@@ -13,7 +13,7 @@ _: {
     };
     preview = {
       image_filter = "lanczos";
-      image_quality = "90";
+      image_quality = 90;
     };
   };
 }
