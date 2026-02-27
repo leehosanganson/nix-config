@@ -6,15 +6,16 @@
     type = "fcitx5";
     fcitx5.waylandFrontend = true;
     fcitx5.addons = with pkgs; [
-      fcitx5-gtk
-      kdePackages.fcitx5-qt
-      kdePackages.fcitx5-configtool
+      qt6Packages.fcitx5-configtool
     ];
   };
 
   environment.sessionVariables = {
     INPUT_METHOD = "fcitx";
     SDL_IM_MODULE = "fcitx";
-    GLFW_IM_MODULE = "ibus";
+
+    GTK_IM_MODULE = "fcitx";
+    QT_IM_MODULE = "fcitx";
+    XMODIFIERS = "@im=fcitx";
   };
 }

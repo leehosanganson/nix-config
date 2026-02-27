@@ -46,10 +46,6 @@
         "MOZ_ENABLE_WAYLAND,1"
         "XDG_SESSION_TYPE,wayland"
         "XDG_SESSION_DESKTOP,Hyprland"
-        "XCURSOR_THEME,Adwaita"
-
-        "XMODIFIERS,@im=fcitx"
-        "QT_IM_MODULE,fcitx"
       ];
 
 
