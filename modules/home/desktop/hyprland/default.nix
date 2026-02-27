@@ -33,6 +33,7 @@
         "systemctl --user start hyprpolkitagent.service"
         "systemctl --user enable --now hyprpaper.service"
         "$HOME/.config/start-up/spawn-portrait-workspace.sh"
+        "[workspace 2 silent] zen"
       ];
 
       monitor = [
