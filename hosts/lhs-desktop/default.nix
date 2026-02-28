@@ -39,7 +39,6 @@
     extraModprobeConfig = ''
       options iwlwifi power_save=0
       options iwlmvm power_scheme=1
-      options usbhid mousepoll=2
     '';
 
     kernelPackages = pkgs.linuxPackages_latest;
@@ -59,17 +58,16 @@
     };
 
     kernelParams = [
-      "amdgpu.dc=1"
-      "vga=current"
+      # Quiet boot
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
       "udev.log_priority=3"
       "boot.shell_on_fail"
-      "usb4=1"
     ];
 
     consoleLogLevel = 0;
 
+    # Graphical Splash boot
     plymouth.enable = true;
   };
 
