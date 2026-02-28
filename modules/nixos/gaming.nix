@@ -4,13 +4,6 @@
   '';
   users.users.ansonlee.extraGroups = [ "input" ];
 
-  programs.gamemode.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    libva
-    libva-utils
-  ];
-
   # mouse
   services.libinput.enable = true;
   services.libinput.mouse.accelProfile = "flat";
