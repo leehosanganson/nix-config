@@ -9,7 +9,7 @@ let
     ".config/zsh/config" = "zsh/.config/zsh/config";
     ".config/tmux/tmux.conf" = "tmux/.config/tmux/tmux.conf";
     ".config/ai" = "ai/.config/ai";
-    ".config/opencode" = "ai/.config/opencode";
+    ".config/opencode/opencode.json" = "ai/.config/opencode/opencode.json";
     ".ticker.yaml" = ".ticker.yaml";
     ".config/start-up" = "start-up/.config/start-up";
     ".config/wofi" = "wofi/.config/wofi";
