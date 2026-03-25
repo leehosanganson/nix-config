@@ -44,5 +44,6 @@
     zoxide
     tmux
     fastfetch
+    opencode
   ];
 }
