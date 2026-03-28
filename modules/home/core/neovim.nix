@@ -5,7 +5,7 @@
     lua-language-server
     stylua
     selene
-    prettier
+    prettierd
 
     # k8s
     helm-ls
