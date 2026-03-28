@@ -5,6 +5,7 @@
     lua-language-server
     stylua
     selene
+    vscode-json-languageserver
     prettierd
 
     # k8s
