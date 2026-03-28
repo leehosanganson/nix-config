@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, config, ... }:
 
 {
   home.stateVersion = "25.11";
@@ -30,4 +30,9 @@
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     pear-desktop
   ];
+
+  # Environment variables
+  home.sessionVariables = {
+    LITELLM_API_KEY = ''$(cat ${config.sops.secrets."litellm-api-key".path})'';
+  };
 }

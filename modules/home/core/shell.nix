@@ -15,7 +15,6 @@
     initContent = ''
       fastfetch
       source ~/.config/zsh/config
-      export LITELLM_API_KEY=$(cat $(config.sops.secrets."litellm-api-key".path))
     '';
   };
 
