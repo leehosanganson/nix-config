@@ -10,6 +10,7 @@ cd "$CONF_FILES"
 find . -path './.git' -prune -o -name "*.nix" -type f -print0 | xargs -0 nixpkgs-fmt
 
 # Stage
+nix flake update dotfiles
 git add .
 
 # Rebuild
