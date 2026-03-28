@@ -71,11 +71,11 @@
     "dotfiles": {
       "flake": false,
       "locked": {
-        "lastModified": 1774708279,
-        "narHash": "sha256-VZ1ivDEthxMjLUKA9mL02r30FvDA2PJN/hNMBU5Ylqw=",
+        "lastModified": 1774709879,
+        "narHash": "sha256-WSympkgcrvnLilN/5rnt0Q1LPL7/zr8rXVCZ941ftNc=",
         "ref": "refs/heads/main",
-        "rev": "5a8d0329e0cec57175592a0cd56ec431bde9b14c",
-        "revCount": 110,
+        "rev": "d80fee9c30de7a50a32b5be3be6dde91dbd40dd4",
+        "revCount": 112,
         "submodules": true,
         "type": "git",
         "url": "file:///home/ansonlee/nixos-config/dotfiles"
