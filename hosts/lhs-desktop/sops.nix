@@ -11,6 +11,7 @@
     age.keyFile = "/home/ansonlee/.config/sops/age/keys.txt";
     secrets = {
       "litellm-api-key" = { };
+      "opencode-github-pat" = { };
     };
   };
 }
