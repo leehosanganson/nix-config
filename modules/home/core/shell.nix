@@ -45,5 +45,6 @@
     tmux
     fastfetch
     opencode
+    tldr
   ];
 }
