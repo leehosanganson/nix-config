@@ -14,6 +14,7 @@ let
     ".config/start-up" = "start-up/.config/start-up";
     ".config/wofi" = "wofi/.config/wofi";
     ".config/waybar" = "waybar/.config/waybar";
+    ".config/swaync" = "swaync/.config/swaync";
   };
 in
 {
