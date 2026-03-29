@@ -5,7 +5,8 @@
     swww # Wallpaper
     hyprpaper # Wallpaper
     wofi # App Menu
-    mako # Notification daemon
+    swaynotificationcenter # notification center daemon
+    swayosd # on-screen display
     swaylock-effects # Lockscreen
     swayidle # Idle management
     wl-clipboard # Clipboard
@@ -16,7 +17,6 @@
     thunar-archive-plugin # archive plugin
     hyprpolkitagent # polkit auth
     networkmanagerapplet # Network Manager
-    cava # Audio Visualiser
     hyprshot # Screenshots
     satty # Screenshot Annotation
   ];
