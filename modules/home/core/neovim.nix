@@ -6,6 +6,7 @@
     stylua
     selene
     vscode-json-languageserver
+    vscode-css-languageserver
     prettierd
 
     # k8s
