@@ -24,7 +24,7 @@
       "$fileManager" = "ghostty -e yazi";
       "$menu" = "wofi --show drun --style $HOME/.config/wofi/styles.css";
       "$reload_waybar" = "$HOME/.config/waybar/scripts/reload.sh";
-      "$snip" = "snip";
+      "$snip" = "hypshot --mode region --clipboard-only | satty --filename -";
 
       exec-once = [
         "fcitx5 -d"
