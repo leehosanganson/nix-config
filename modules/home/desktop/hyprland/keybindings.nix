@@ -13,6 +13,7 @@ _:
         "$mainMod, D, exec, $menu"
         "$mainMod, R, exec, $reload_waybar"
         "$mainMod, S, exec, $snip"
+        "$mainMod, N, exec, $notification"
 
         "$mainMod, F, fullscreen, 2"
         "$mainMod, h, movefocus, l"

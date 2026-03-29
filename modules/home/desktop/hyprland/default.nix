@@ -25,6 +25,7 @@
       "$menu" = "wofi --show drun --style $HOME/.config/wofi/styles.css";
       "$reload_waybar" = "$HOME/.config/waybar/scripts/reload.sh";
       "$snip" = "hyprshot --mode region";
+      "$notification" = "swaync-client --toggle-panel";
 
       exec-once = [
         "fcitx5 -d"
