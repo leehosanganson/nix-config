@@ -24,7 +24,7 @@
       "$fileManager" = "ghostty -e yazi";
       "$menu" = "wofi --show drun --style $HOME/.config/wofi/styles.css";
       "$reload_waybar" = "$HOME/.config/waybar/scripts/reload.sh";
-      "$snip" = "hyprshot --mode region --clipboard-only | satty --filename -";
+      "$snip" = "hyprshot --mode region";
 
       exec-once = [
         "fcitx5 -d"
@@ -47,6 +47,7 @@
         "MOZ_ENABLE_WAYLAND,1"
         "XDG_SESSION_TYPE,wayland"
         "XDG_SESSION_DESKTOP,Hyprland"
+        "XDG_PICTURES_DIR,$HOME/pictures"
       ];
 
       general = {
