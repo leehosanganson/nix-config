@@ -30,5 +30,6 @@
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     pear-desktop
     feishin
+    devpod
   ];
 }
