@@ -11,12 +11,8 @@
     zen-browser.url = "github:youwen5/zen-browser-flake";
     stylix.url = "github:nix-community/stylix";
     sops-nix.url = "github:Mic92/sops-nix";
-    dotfiles = {
-      url = "git+file:///home/ansonlee/nixos-config/dotfiles?submodules=1";
-      flake = false;
-    };
   };
-  outputs = { nixpkgs, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, sops-nix, ... }@inputs: {
     nixosConfigurations.lhs-desktop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
@@ -26,12 +22,24 @@
         home-manager.nixosModules.home-manager
         {
           home-manager.users.ansonlee = ./hosts/lhs-desktop/home.nix;
-          home-manager.extraSpecialArgs = { inherit inputs; };
+          home-manager.extraSpecialArgs = {
+            inherit inputs;
+            dotfilesPath = "${self}/dotfiles";
+          };
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "bak";
         }
       ];
     };
+    homeConfigurations."ansonlee@mac-mini" = home-manager.lib.homeManagerConfiguration
+      {
+        pkgs = nixpkgs.legacyPackages."aarch64-darwin";
+        extraSpecialArgs = { inherit inputs; dotfilesPath = "${self}/dotfiles"; };
+        modules = [
+          ./hosts/mac-mini/home.nix
+          sops-nix.homeManagerModules.sops
+        ];
+      };
   };
 }

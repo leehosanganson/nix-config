@@ -8,7 +8,7 @@
 
   sops = {
     defaultSopsFile = "${dotfilesPath}/secrets/secrets.yaml";
-    age.keyFile = "/home/ansonlee/.config/sops/age/keys.txt";
+    age.keyFile = "/Users/ansonlee/.config/sops/age/keys.txt";
     secrets = {
       "litellm-api-key" = { };
       "opencode-github-pat" = { };
