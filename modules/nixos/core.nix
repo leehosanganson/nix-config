@@ -26,14 +26,14 @@
     wireplumber.enable = true;
   };
 
+  programs.zsh.enable = true;
+
   users.users.ansonlee = {
     isNormalUser = true;
     description = "Anson Lee";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
   };
-
-  programs.zsh.enable = true;
 
   environment.variables = {
     EDITOR = "vim";

@@ -1,8 +1,8 @@
 { ... }:
 
 {
-  home.username = "ansonlee";
-  home.homeDirectory = "/Users/ansonlee";
+  home.username = "vscode";
+  home.homeDirectory = "/home/vscode";
 
   # Do not change
   home.stateVersion = "23.11";
@@ -11,6 +11,7 @@
 
   imports = [
     ./sops.nix
+    ../../modules/home/core
     ../../modules/home/apps/dev.nix
   ];
 }

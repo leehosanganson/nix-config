@@ -14,6 +14,7 @@
 
     # Applications
     ../../modules/home/apps/yazi.nix
+    ../../modules/home/apps/dev.nix
 
     # Desktop
     ../../modules/home/desktop/hyprland
@@ -22,6 +23,7 @@
 
   # Applications
   home.packages = with pkgs; [
+    ghostty
     google-chrome
     discord
     moonlight-qt

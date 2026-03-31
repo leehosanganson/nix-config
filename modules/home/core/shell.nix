@@ -38,7 +38,6 @@
   };
 
   home.packages = with pkgs; [
-    ghostty
     ripgrep
     lazygit
     zoxide

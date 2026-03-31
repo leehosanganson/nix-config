@@ -32,14 +32,21 @@
         }
       ];
     };
-    homeConfigurations."ansonlee@mac-mini" = home-manager.lib.homeManagerConfiguration
-      {
-        pkgs = nixpkgs.legacyPackages."aarch64-darwin";
-        extraSpecialArgs = { inherit inputs; dotfilesPath = "${self}/dotfiles"; };
-        modules = [
-          ./hosts/mac-mini/home.nix
-          sops-nix.homeManagerModules.sops
-        ];
-      };
+    homeConfigurations."ansonlee@mac-mini" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages."aarch64-darwin";
+      extraSpecialArgs = { inherit inputs; dotfilesPath = "${self}/dotfiles"; };
+      modules = [
+        ./hosts/mac-mini/home.nix
+        sops-nix.homeManagerModules.sops
+      ];
+    };
+    homeConfigurations."vscode@devcontainer" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages."x86_64-linux";
+      extraSpecialArgs = { inherit inputs; dotfilesPath = "${self}/dotfiles"; };
+      modules = [
+        ./hosts/devcontainer/home.nix
+        sops-nix.homeManagerModules.sops
+      ];
+    };
   };
 }
