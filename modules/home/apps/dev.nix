@@ -1,12 +1,13 @@
 { pkgs, ... }: {
   programs.git = {
     enable = true;
-    userName = "Anson Lee";
-    userEmail = "leehosanganson@gmail.com";
-    extraConfig = {
-      init.defaultBranch = "main";
-      pull.rebase = false;
-
+    settings = {
+      user.name = "Anson Lee";
+      user.email = "leehosanganson@gmail.com";
+      extraConfig = {
+        init.defaultBranch = "main";
+        pull.rebase = false;
+      };
     };
   };
 

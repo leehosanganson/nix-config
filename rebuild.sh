@@ -2,7 +2,6 @@
 set -e
 
 # Stage
-nix flake update dotfiles
 git add .
 
 # Rebuild
