@@ -50,7 +50,10 @@
       ];
     };
     homeConfigurations."vscode@devcontainer" = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages."x86_64-linux";
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+      };
       extraSpecialArgs = { inherit inputs; dotfilesPath = dotfiles; secretsPath = secrets; };
       modules = [
         ./hosts/devcontainer/home.nix
