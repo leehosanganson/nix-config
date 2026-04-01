@@ -33,5 +33,6 @@
     pear-desktop
     feishin
     devpod
+    github-copilot-cli
   ];
 }

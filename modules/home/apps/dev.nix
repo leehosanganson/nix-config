@@ -29,6 +29,5 @@
     gh
     tldr
     opencode
-    github-copilot-cli
   ];
 }
