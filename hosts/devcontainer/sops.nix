@@ -1,4 +1,4 @@
-{ pkgs, inputs, dotfilesPath, ... }: {
+{ pkgs, inputs, secretsPath, ... }: {
   imports = [ inputs.sops-nix.homeModules.sops ];
 
   home.packages = with pkgs; [
@@ -7,8 +7,8 @@
   ];
 
   sops = {
-    defaultSopsFile = "${dotfilesPath}/secrets/secrets.yaml";
-    age.keyFile = "/home/ansonlee/.config/sops/age/keys.txt";
+    defaultSopsFile = "${secretsPath}/secrets.yaml";
+    age.keyFile = "/home/vscode/.config/sops/age/keys.txt";
     secrets = {
       "litellm-api-key" = { };
       "opencode-github-pat" = { };
