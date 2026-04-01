@@ -23,7 +23,7 @@
 
   services.swayidle = {
     enable = true;
-    systemdTarget = "hyprland-session.target";
+    systemdTargets = [ "hyprland-session.target" ];
     timeouts = [
       { timeout = 300; command = "swaylock-effects -f"; }
       { timeout = 360; command = "hyprctl dispatch dpms"; }
