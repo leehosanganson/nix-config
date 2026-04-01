@@ -20,7 +20,7 @@
       flake = false;
     };
   };
-  outputs = { self, nixpkgs, home-manager, sops-nix, dotfiles, secrets, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, sops-nix, dotfiles, secrets, ... }@inputs: {
     nixosConfigurations.lhs-desktop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };

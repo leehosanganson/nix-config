@@ -11,6 +11,7 @@
     initContent = ''
       fastfetch
       source ~/.config/zsh/config
+      export rebuild=~/nix-config/rebuild.sh
     '';
   };
 
