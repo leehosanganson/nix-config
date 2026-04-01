@@ -4,9 +4,11 @@ set -e
 # Stage
 git add .
 
+nix flake update
+
 # Rebuild
 if [[ "$(uname)" == "Darwin" ]]; then
-  if nix run github:nix-community/home-manager -- switch --flake git+file:.?submodules=1#ansonlee@mac-mini; then
+  if nix run github:nix-community/home-manager -- switch --flake .#ansonlee@mac-mini; then
     git commit -m "macOS Rebuild: $(date +'%Y-%m-%d %H:%M:%S')"
     git push origin main
     echo "macOS rebuilt"
@@ -15,7 +17,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
     exit 1
   fi
 else
-  if sudo nixos-rebuild switch --flake git+file:.?submodules=1#$(hostname); then
+  if sudo nixos-rebuild switch --flake .$(hostname); then
     # Commit the changes
     gen=$(nixos-rebuild list-generations | grep True | awk '{print $1}')
     git commit -m "Generation $gen: $(date +'%Y-%m-%d %H:%M:%S')"

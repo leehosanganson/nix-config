@@ -1,8 +1,4 @@
 { lib, pkgs, ... }: {
-  programs.bash.shellAliases = {
-    rebuild = "bash ~/nixos-config/rebuild.sh";
-  };
-
   programs.zsh = {
     enable = true;
     enableCompletion = true;

@@ -1,4 +1,4 @@
-{ pkgs, inputs, dotfilesPath, ... }: {
+{ pkgs, inputs, secretsPath, ... }: {
   imports = [ inputs.sops-nix.homeModules.sops ];
 
   home.packages = with pkgs; [
@@ -7,7 +7,7 @@
   ];
 
   sops = {
-    defaultSopsFile = "${dotfilesPath}/secrets/secrets.yaml";
+    defaultSopsFile = "${secretsPath}/secrets.yaml";
     age.keyFile = "/Users/ansonlee/.config/sops/age/keys.txt";
     secrets = {
       "litellm-api-key" = { };

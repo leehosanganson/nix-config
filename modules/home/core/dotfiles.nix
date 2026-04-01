@@ -1,6 +1,5 @@
-{ config, ... }:
+{ config, dotfilesPath, ... }:
 let
-  dotfiles = "${config.home.homeDirectory}/nixos-config/dotfiles";
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
 
   configs = {
@@ -20,9 +19,8 @@ in
 {
   home.file = builtins.mapAttrs
     (name: subpath: {
-      source = create_symlink "${dotfiles}/${subpath}";
+      source = create_symlink "${dotfilesPath}/${subpath}";
       recursive = true;
     })
     configs;
 }
-
