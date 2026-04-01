@@ -10,7 +10,7 @@
   config.var = {
     username = "ansonlee";
     hostname = "lhs-desktop";
-    configDirectory = "/home/" + config.var.username + "/nixos-config";
+    configDirectory = "/home/" + config.var.username + "/nix-config";
   };
 
   # DON'T TOUCH THIS
