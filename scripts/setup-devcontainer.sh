@@ -20,7 +20,7 @@ fi
 # Install nix & Run home-manager
 if ! command -v nix &> /dev/null; then
     curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install linux --no-confirm
-    . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+    [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ] && . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 fi
 
-nix run github:nix-community/home-manager -- switch --flake '.#vscode@devcontainer'
+nix run github:nix-community/home-manager -- switch -b backup --flake '.#vscode@devcontainer'
