@@ -1,10 +1,27 @@
 #!/usr/bin/env bash
 set -e
 
+FLAKE_UPDATE=false
+
+for arg in "$@"; do
+  case $arg in
+    --update-flake)
+      FLAKE_UPDATE=true
+      shift
+      ;;
+    *)
+      # Unknown option, just pass it along
+      shift
+      ;;
+  esac
+done
+
 # Stage
 git add .
 
-nix flake update
+if [ "$SKIP_FLAKE_UPDATE" = "true" ]; then
+  nix flake update dotfiles secrets
+fi
 
 # Rebuild
 if [[ "$(uname)" == "Darwin" ]]; then

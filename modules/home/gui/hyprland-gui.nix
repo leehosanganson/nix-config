@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, config, ... }: {
   home.packages = with pkgs; [
     kitty # Hyprland Default Terminal
     waybar # Status Bar
@@ -28,6 +28,11 @@
       { timeout = 300; command = "swaylock-effects -f"; }
       { timeout = 360; command = "hyprctl dispatch dpms"; }
     ];
+  };
+
+  gtk = {
+    enable = true;
+    gtk4.theme = config.gtk.theme;
   };
 
   services.hyprpaper.enable = true;
