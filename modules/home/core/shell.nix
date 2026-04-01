@@ -38,9 +38,6 @@
     ripgrep
     lazygit
     zoxide
-    tmux
     fastfetch
-    opencode
-    tldr
   ];
 }

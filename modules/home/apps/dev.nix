@@ -25,5 +25,10 @@
     fzf
     curl
     jq
+    tmux
+    gh
+    tldr
+    opencode
+    github-copilot-cli
   ];
 }
