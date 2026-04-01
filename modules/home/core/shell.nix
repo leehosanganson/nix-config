@@ -9,7 +9,7 @@
       theme = "agnoster";
     };
     initContent = ''
-      alias rebuild=pushd ~/nix-config && ~/nix-config/rebuild.sh && popd
+      alias rebuild='pushd ~/nix-config && ~/nix-config/rebuild.sh && popd'
       source ~/.config/zsh/config
       fastfetch
     '';
