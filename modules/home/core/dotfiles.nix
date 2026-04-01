@@ -6,7 +6,7 @@ let
     ".config/ghostty" = "ghostty/.config/ghostty";
     ".config/nvim" = "nvim/.config/nvim";
     ".config/zsh/config" = "zsh/.config/zsh/config";
-    ".config/tmux/tmux.conf" = "tmux/.config/tmux/tmux.conf";
+    ".config/tmux" = "tmux/.config/tmux";
     ".config/ai" = "ai/.config/ai";
     ".config/opencode" = "opencode/.config/opencode";
     ".ticker.yaml" = ".ticker.yaml";
