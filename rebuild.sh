@@ -19,7 +19,7 @@ done
 # Stage
 git add .
 
-if [ "$SKIP_FLAKE_UPDATE" = "true" ]; then
+if [ "$FLAKE_UPDATE" = "true" ]; then
   nix flake update dotfiles secrets
 fi
 
