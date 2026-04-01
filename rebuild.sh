@@ -33,7 +33,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
     echo "Build Failed. Fix the errors above. Nothing was committed"
     exit 1
   fi
-else
+elif [[ -f /etc/NIXOS ]]; then
   if sudo nixos-rebuild switch --flake .#$(hostname); then
     # Commit the changes
     gen=$(nixos-rebuild list-generations | grep True | awk '{print $1}')
@@ -45,5 +45,8 @@ else
     echo "Build Failed. Fix the errors above. Nothing was committed"
     exit 1
   fi
+else
+  echo "Unknown OS. Nothing was committed"
+  exit 1
 fi
 
