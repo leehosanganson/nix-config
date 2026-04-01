@@ -71,11 +71,11 @@
     "dotfiles": {
       "flake": false,
       "locked": {
-        "lastModified": 1774991469,
-        "narHash": "sha256-apK0KqasuJnAbYN0mpz1qf6PD3X+A80KgRV5GPHNEfs=",
+        "lastModified": 1775034219,
+        "narHash": "sha256-QvOupKg/pW5MXxB/jl1oar3f2kyFNHjlc8B76KMYzwc=",
         "ref": "refs/heads/main",
-        "rev": "da2471049e0af605624380c4d7416e1d6b8f02bf",
-        "revCount": 128,
+        "rev": "399cbfc399d86d61bdc12806e632776c6c9c96ec",
+        "revCount": 129,
         "type": "git",
         "url": "ssh://git@github.com/leehosanganson/dotfiles.git"
       },

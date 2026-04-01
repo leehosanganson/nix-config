@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
+# Arguments
 FLAKE_UPDATE=false
 
 for arg in "$@"; do
@@ -16,12 +17,12 @@ for arg in "$@"; do
   esac
 done
 
-# Stage
-git add .
-
 if [ "$FLAKE_UPDATE" = "true" ]; then
   nix flake update dotfiles secrets
 fi
+
+# Stage
+git add .
 
 # Rebuild
 if [[ "$(uname)" == "Darwin" ]]; then
