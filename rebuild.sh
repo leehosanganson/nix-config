@@ -17,7 +17,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
     exit 1
   fi
 else
-  if sudo nixos-rebuild switch --flake .$(hostname); then
+  if sudo nixos-rebuild switch --flake .#$(hostname); then
     # Commit the changes
     gen=$(nixos-rebuild list-generations | grep True | awk '{print $1}')
     git commit -m "Generation $gen: $(date +'%Y-%m-%d %H:%M:%S')"
