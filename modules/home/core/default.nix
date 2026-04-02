@@ -1,6 +1,6 @@
 _: {
   imports = [
-    ./dotfiles.nix
+    # ./dotfiles.nix
     ./neovim.nix
     ./shell.nix
   ];
