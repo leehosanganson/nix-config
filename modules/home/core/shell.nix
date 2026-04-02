@@ -1,4 +1,4 @@
-{ pkgs, dotfilesPath, ... }: {
+{ pkgs, ... }: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -23,7 +23,6 @@
       catppuccin
       vim-tmux-navigator
     ];
-    extraConfig = builtins.readFile "${dotfilesPath}/tmux/.config/tmux/tmux.base.conf";
   };
 
 

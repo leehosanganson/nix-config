@@ -68,22 +68,6 @@
         "type": "github"
       }
     },
-    "dotfiles": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1775163968,
-        "narHash": "sha256-Qo+GldUpWSCSUIOvQDIG2UlcISM/SLUyJqGr1e0BQgU=",
-        "ref": "refs/heads/main",
-        "rev": "048612ce1684dfce5addd627d34e2dae87485210",
-        "revCount": 140,
-        "type": "git",
-        "url": "ssh://git@github.com/leehosanganson/dotfiles.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/leehosanganson/dotfiles.git"
-      }
-    },
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
@@ -267,7 +251,6 @@
     },
     "root": {
       "inputs": {
-        "dotfiles": "dotfiles",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "secrets": "secrets",

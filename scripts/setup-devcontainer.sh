@@ -28,7 +28,7 @@ if ! command -v nix &> /dev/null; then
     fi
 fi
 
-nix run .#home-manager -- switch -b backup --flake '.#vscode@devcontainer'
+nix run home-manager/master -- switch -b backup --flake '.#vscode@devcontainer'
 
 # Make Home Manager’s PATH globally available in zsh
 ZSHRC="$HOME/.zshrc"
