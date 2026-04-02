@@ -23,6 +23,10 @@
       catppuccin
       vim-tmux-navigator
     ];
+
+    extraConfig = ''
+      source-file ~/.config/tmux/tmux.base.conf
+    '';
   };
 
 
