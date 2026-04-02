@@ -16,14 +16,14 @@
   };
 
 
-  # programs.tmux = {
-  #   enable = true;
-  #   plugins = with pkgs.tmuxPlugins; [
-  #     cpu
-  #     catppuccin
-  #     vim-tmux-navigator
-  #   ];
-  # };
+  programs.tmux = {
+    enable = true;
+    plugins = with pkgs.tmuxPlugins; [
+      cpu
+      catppuccin
+      vim-tmux-navigator
+    ];
+  };
 
 
   home.packages = with pkgs; [
