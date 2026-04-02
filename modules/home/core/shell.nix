@@ -25,7 +25,7 @@
     ];
 
     extraConfig = ''
-      source-file ~/.config/.tmux.conf
+      source-file ~/.tmux.conf
     '';
   };
 
