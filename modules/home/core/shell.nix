@@ -16,18 +16,18 @@
   };
 
 
-  # programs.tmux = {
-  #   enable = true;
-  #   plugins = with pkgs.tmuxPlugins; [
-  #     cpu
-  #     catppuccin
-  #     vim-tmux-navigator
-  #   ];
-  #
-  #   extraConfig = ''
-  #     source-file ~/.config/tmux/tmux.base.conf
-  #   '';
-  # };
+  programs.tmux = {
+    enable = true;
+    plugins = with pkgs.tmuxPlugins; [
+      cpu
+      catppuccin
+      vim-tmux-navigator
+    ];
+
+    extraConfig = ''
+      source-file ~/.config/tmux/tmux.base.conf
+    '';
+  };
 
 
   home.packages = with pkgs; [
