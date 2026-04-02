@@ -7,6 +7,7 @@
       extraConfig = {
         init.defaultBranch = "main";
         pull.rebase = false;
+        fetch.prune = true;
       };
     };
   };
