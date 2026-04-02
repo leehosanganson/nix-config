@@ -27,6 +27,7 @@
 
 
   home.packages = with pkgs; [
+    stow
     ripgrep
     lazygit
     zoxide
