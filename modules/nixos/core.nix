@@ -1,4 +1,4 @@
-{ self, pkgs, ... }: {
+{ pkgs, ... }: {
   # Nix
   nix = {
     settings.auto-optimise-store = true;
