@@ -26,7 +26,7 @@ git add .
 
 # Rebuild
 if [[ "$(uname)" == "Darwin" ]]; then
-  if nix run github:nix-community/home-manager -- switch --flake .#ansonlee@mac-mini; then
+  if nix run github:nix-community/home-manager -- switch -b bak --flake .#ansonlee@mac-mini; then
     git commit -m "macOS Rebuild: $(date +'%Y-%m-%d %H:%M:%S')"
     git push origin main
     echo "macOS rebuilt"
