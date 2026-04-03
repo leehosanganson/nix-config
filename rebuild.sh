@@ -18,7 +18,7 @@ for arg in "$@"; do
 done
 
 if [ "$FLAKE_UPDATE" = "true" ]; then
-  nix flake update dotfiles secrets
+  nix flake update secrets
 fi
 
 # Stage
