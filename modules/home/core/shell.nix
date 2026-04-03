@@ -29,6 +29,8 @@
       cpu
       catppuccin
       vim-tmux-navigator
+      resurrect
+      continuum
     ];
   };
 
