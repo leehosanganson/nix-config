@@ -18,6 +18,13 @@
 
   programs.tmux = {
     enable = true;
+    sensibleOnTop = false;
+    terminal = "tmux-256color";
+    baseIndex = 1;
+    keyMode = "vi";
+    mouse = true;
+    escapeTime = 0;
+    historyLimit = 4000;
     plugins = with pkgs.tmuxPlugins; [
       cpu
       catppuccin
