@@ -47,6 +47,7 @@
       "thunderbolt"
       "usb4"
       "amdgpu"
+      "ntsync"
     ];
 
     initrd = {
