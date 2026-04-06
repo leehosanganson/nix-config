@@ -103,9 +103,10 @@
   };
 
   # Virtualisation
-  virtualisation.docker = {
+  virtualisation.podman = {
     enable = true;
-    rootless.enable = true;
-    rootless.setSocketVariable = true;
+    dockerCompat = true;
+    dockerSocket.enable = true;
+    defaultNetwork.settings.dns_enabld = true;
   };
 }
