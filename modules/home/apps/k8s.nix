@@ -3,8 +3,6 @@
     kubectl
     k9s
     kubernetes-helm
-    kubernetes-helm-completions
-    velero
     fluxcd
   ];
 }
