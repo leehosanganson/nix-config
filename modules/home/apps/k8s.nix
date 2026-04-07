@@ -4,5 +4,6 @@
     k9s
     kubernetes-helm
     fluxcd
+    kubectl-cnpg
   ];
 }
