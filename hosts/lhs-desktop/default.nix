@@ -24,6 +24,7 @@
       ../../modules/nixos/hyprland.nix
 
       # Don't change
+      ../../modules/common.nix
       ../../modules/nixos/core.nix
       ./hardware-configuration.nix
     ];

@@ -26,10 +26,11 @@ git add .
 
 # Rebuild
 if [[ "$(uname)" == "Darwin" ]]; then
-  if nix run github:nix-community/home-manager -- switch -b bak --flake .#ansonlee@mac-mini; then
-    git commit -m "macOS Rebuild: $(date +'%Y-%m-%d %H:%M:%S')"
+  if sudo darwin-rebuild switch --flake .#mac-mini; then
+    gen=$(darwin-rebuild list-generations | grep True | awk '{print $1}')
+    git commit -m "$HOSTNAME OSX Generation $gen: $(date +'%Y-%m-%d %H:%M:%S')"
     git push origin main
-    echo "macOS rebuilt"
+    echo "$HOSTNAME rebuilt - gen $gen"
   else
     echo "Build Failed. Fix the errors above. Nothing was committed"
     exit 1
@@ -38,7 +39,7 @@ elif [[ -f /etc/NIXOS ]]; then
   if sudo nixos-rebuild switch --flake .#$(hostname); then
     # Commit the changes
     gen=$(nixos-rebuild list-generations | grep True | awk '{print $1}')
-    git commit -m "Generation $gen: $(date +'%Y-%m-%d %H:%M:%S')"
+    git commit -m "$HOSTNAME NixOs Generation $gen: $(date +'%Y-%m-%d %H:%M:%S')"
     git push origin main
 
     echo "$HOSTNAME rebuilt - gen $gen"

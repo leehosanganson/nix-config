@@ -8,6 +8,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     zen-browser.url = "github:youwen5/zen-browser-flake";
     stylix.url = "github:nix-community/stylix";
     sops-nix.url = "github:Mic92/sops-nix";
@@ -16,7 +20,7 @@
       flake = false;
     };
   };
-  outputs = { nixpkgs, home-manager, sops-nix, secrets, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, nix-darwin, sops-nix, secrets, ... }@inputs: {
     nixosConfigurations.lhs-desktop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
@@ -36,12 +40,19 @@
         }
       ];
     };
-    homeConfigurations."ansonlee@mac-mini" = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages."aarch64-darwin";
-      extraSpecialArgs = { inherit inputs; secretsPath = secrets; };
+    darwinConfigurations."mac-mini" = nix-darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
+      specialArgs = { inherit inputs; secretsPath = secrets; };
       modules = [
-        ./hosts/mac-mini/home.nix
-        sops-nix.homeManagerModules.sops
+        ./hosts/mac-mini
+        home-manager.darwinModules.home-manager
+        {
+          home-manager.users.ansonlee = ./hosts/mac-mini/home.nix;
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "bak";
+          home-manager.extraSpecialArgs = { inherit inputs; secretsPath = secrets; };
+        }
       ];
     };
     homeConfigurations."vscode@devcontainer" = home-manager.lib.homeManagerConfiguration {

@@ -1,8 +1,6 @@
 { pkgs, ... }: {
   # Nix
   nix = {
-    settings.auto-optimise-store = true;
-    settings.experimental-features = [ "nix-command" "flakes" ];
     gc = {
       automatic = true;
       dates = "weekly";
@@ -10,8 +8,15 @@
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
+  # User
+  users.users.ansonlee = {
+    isNormalUser = true;
+    description = "Anson Lee";
+    extraGroups = [ "networkmanager" "wheel" "podman" ];
+    shell = pkgs.zsh;
+  };
 
+  # Configure printers
   services.printing.enable = true;
 
   # Enable sound with pipewire.
@@ -25,48 +30,4 @@
     jack.enable = true;
     wireplumber.enable = true;
   };
-
-  programs.zsh.enable = true;
-
-  users.users.ansonlee = {
-    isNormalUser = true;
-    description = "Anson Lee";
-    extraGroups = [ "networkmanager" "wheel" "podman" ];
-    shell = pkgs.zsh;
-  };
-
-  environment.variables = {
-    EDITOR = "vim";
-    VISUAL = "vim";
-    TERMINAL = "ghostty";
-    TERM = "xterm-256color";
-    BROWSER = "zen";
-  };
-
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-    git
-    fd
-    fzf
-    gcc
-    file
-    git-ignore
-    xdg-utils
-    curl
-    gnupg
-    openssl
-    jq
-    go
-    comma
-    zip
-    unzip
-    pfetch
-    unrar
-    btop
-    iftop
-    nodejs
-    python3
-    cargo
-  ];
 }

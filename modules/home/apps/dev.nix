@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   programs.git = {
     enable = true;
+    signing.format = "ssh";
     settings = {
       user.name = "Anson Lee";
       user.email = "leehosanganson@gmail.com";
