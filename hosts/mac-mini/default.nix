@@ -21,6 +21,6 @@
     ];
   };
 
-  # # Tailscale
-  # services.tailscale.enable = true;
+  # Tailscale
+  services.tailscale.enable = true;
 }
