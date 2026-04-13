@@ -28,6 +28,7 @@
     ghostty
     google-chrome
     discord
+    obsidian
     moonlight-qt
     bitwarden-desktop
     steam
