@@ -9,7 +9,13 @@
   ];
 
   # ssh
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    extraConfig = ''
+      PermitRootLogin no
+      PasswordAuthentication no
+    '';
+  };
 
   # User
   users.users.ansonlee = {
