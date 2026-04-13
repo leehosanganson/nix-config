@@ -16,6 +16,7 @@
     ../../modules/home/apps/yazi.nix
     ../../modules/home/apps/dev.nix
     ../../modules/home/apps/k8s.nix
+    ../../modules/home/apps/syncthing.nix
 
     # Desktop
     ../../modules/home/desktop/hyprland
