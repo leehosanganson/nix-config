@@ -20,7 +20,6 @@
     nixpkgs-fmt
 
     # plugins
-    tree-sitter
     gdu
   ];
 }
