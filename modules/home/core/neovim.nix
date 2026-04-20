@@ -20,6 +20,7 @@
     nixpkgs-fmt
 
     # plugins
+    lua51Packages.tree-sitter-cli
     gdu
   ];
 }
