@@ -12,6 +12,7 @@
   imports = [
     ./sops.nix
     ../../modules/home/apps/dev.nix
+    ../../modules/home/apps/k8s.nix
     ../../modules/home/core
   ];
 }
