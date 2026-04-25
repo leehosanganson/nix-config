@@ -55,6 +55,21 @@
         }
       ];
     };
+    darwinConfigurations."lhs-mbp" = nix-darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
+      specialArgs = { inherit inputs; secretsPath = secrets; };
+      modules = [
+        ./hosts/lhs-mbp
+        home-manager.darwinModules.home-manager
+        {
+          home-manager.users.ansonlee = ./hosts/lhs-mbp/home.nix;
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "bak";
+          home-manager.extraSpecialArgs = { inherit inputs; secretsPath = secrets; };
+        }
+      ];
+    };
     homeConfigurations."vscode@devcontainer" = home-manager.lib.homeManagerConfiguration {
       pkgs = import nixpkgs {
         system = "x86_64-linux";
