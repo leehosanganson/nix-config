@@ -12,7 +12,7 @@
       };
       folders = {
         "obsidian" = {
-          path = "/home/ansonlee/obsidian";
+          path = "${config.home.homeDirectory}/obsidian";
           devices = [ "syncthing-k3s" ];
         };
       };

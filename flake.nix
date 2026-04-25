@@ -20,7 +20,7 @@
       flake = false;
     };
   };
-  outputs = { nixpkgs, home-manager, nix-darwin, sops-nix, secrets, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, nix-darwin, secrets, ... }@inputs: {
     nixosConfigurations.lhs-desktop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
@@ -55,15 +55,19 @@
         }
       ];
     };
-    homeConfigurations."vscode@devcontainer" = home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs {
-        system = "x86_64-linux";
-        config.allowUnfree = true;
-      };
-      extraSpecialArgs = { inherit inputs; secretsPath = secrets; };
+    darwinConfigurations."lhs-mbp" = nix-darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
+      specialArgs = { inherit inputs; secretsPath = secrets; };
       modules = [
-        ./hosts/devcontainer/home.nix
-        sops-nix.homeManagerModules.sops
+        ./hosts/lhs-mbp
+        home-manager.darwinModules.home-manager
+        {
+          home-manager.users.ansonlee = ./hosts/lhs-mbp/home.nix;
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "bak";
+          home-manager.extraSpecialArgs = { inherit inputs; secretsPath = secrets; };
+        }
       ];
     };
   };
