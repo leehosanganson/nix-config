@@ -7,9 +7,9 @@
   options.theme = lib.mkOption {
     type = lib.types.attrs;
     default = {
-      rounding = 30;
-      gaps-in = 12;
-      gaps-out = 12 * 2;
+      rounding = 8;
+      gaps-in = 4;
+      gaps-out = 6;
       active-opacity = 0.99;
       inactive-opacity = 0.98;
       blur = false;
