@@ -6,7 +6,7 @@ FLAKE_UPDATE=false
 
 for arg in "$@"; do
   case $arg in
-    --update-flake)
+    --update-flakes)
       FLAKE_UPDATE=true
       shift
       ;;
