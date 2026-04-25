@@ -26,7 +26,7 @@ git add .
 
 # Rebuild
 if [[ "$(uname)" == "Darwin" ]]; then
-  if sudo darwin-rebuild switch --flake .#mac-mini; then
+  if sudo darwin-rebuild switch --flake .#$(hostname); then
     gen=$(sudo darwin-rebuild --list-generations | grep current | awk '{print $1}')
     git commit -m "$HOSTNAME OSX Generation $gen: $(date +'%Y-%m-%d %H:%M:%S')"
     git push origin main
