@@ -38,7 +38,5 @@
     feishin
     devpod
     github-copilot-cli
-    wiremix
-    impala
   ];
 }
