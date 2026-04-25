@@ -13,6 +13,11 @@
       source ~/.config/zsh/config
       fastfetch
     '';
+    loginExtra = ''
+      if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = "1" ]; then
+        exec start-hyprland
+      fi
+    '';
   };
 
 
