@@ -20,7 +20,7 @@
       flake = false;
     };
   };
-  outputs = { nixpkgs, home-manager, nix-darwin, sops-nix, secrets, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, nix-darwin, secrets, ... }@inputs: {
     nixosConfigurations.lhs-desktop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
@@ -68,17 +68,6 @@
           home-manager.backupFileExtension = "bak";
           home-manager.extraSpecialArgs = { inherit inputs; secretsPath = secrets; };
         }
-      ];
-    };
-    homeConfigurations."vscode@devcontainer" = home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs {
-        system = "x86_64-linux";
-        config.allowUnfree = true;
-      };
-      extraSpecialArgs = { inherit inputs; secretsPath = secrets; };
-      modules = [
-        ./hosts/devcontainer/home.nix
-        sops-nix.homeManagerModules.sops
       ];
     };
   };
