@@ -1,11 +1,12 @@
 { pkgs, inputs, ... }:
 
 {
-  home.stateVersion = "25.11";
   programs.home-manager.enable = true;
-
-  home.username = "ansonlee";
-  home.homeDirectory = "/home/ansonlee";
+  home = {
+    username = "ansonlee";
+    stateVersion = "25.11";
+    homeDirectory = "/home/ansonlee";
+  };
 
   imports = [
     ../../modules/home/core
@@ -37,5 +38,7 @@
     feishin
     devpod
     github-copilot-cli
+    wiremix
+    impala
   ];
 }

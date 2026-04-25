@@ -52,11 +52,17 @@
     };
 
     fonts = {
+      monospace = {
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMono Nerd Font Mono";
+      };
       sizes = {
         desktop = 13;
         popups = 13;
       };
     };
+
+    targets.qt.enable = false;
 
     polarity = "dark";
 
