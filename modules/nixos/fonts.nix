@@ -3,6 +3,7 @@
     nerd-fonts.jetbrains-mono
     nerd-fonts.hack
     nerd-fonts.fira-code
+    nerd-fonts._0xproto
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
