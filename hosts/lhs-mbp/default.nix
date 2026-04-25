@@ -2,7 +2,6 @@
 {
   system.stateVersion = 6;
   nixpkgs.hostPlatform = "aarch64-darwin";
-  nix.enable = false;
   networking.hostName = "lhs-mbp";
 
   imports = [
@@ -26,6 +25,7 @@
 
   homebrew = {
     enable = true;
+    onActivation.cleanup = "zap";
     casks = [
       "aerospace"
       "ghostty"
