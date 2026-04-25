@@ -42,7 +42,7 @@
       options iwlmvm power_scheme=1
     '';
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_6_19;
 
     kernelModules = [
       "thunderbolt"
