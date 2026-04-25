@@ -1,8 +1,10 @@
 { ... }:
 {
   system.stateVersion = 6;
+  nix.enable = false;
   nixpkgs.hostPlatform = "aarch64-darwin";
   networking.hostName = "lhs-mbp";
+  system.primaryUser = "ansonlee";
 
   imports = [
     ../../modules/common.nix
