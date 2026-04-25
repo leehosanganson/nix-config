@@ -1,11 +1,11 @@
 { ... }:
 
 {
-  home.username = "ansonlee";
-  home.homeDirectory = "/Users/ansonlee";
-
-  # Do not change
-  home.stateVersion = "23.11";
+  home = {
+    username = "ansonlee";
+    homeDirectory = "/Users/ansonlee";
+    stateVersion = "25.11";
+  };
 
   programs.home-manager.enable = true;
 
