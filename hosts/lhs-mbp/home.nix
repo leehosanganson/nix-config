@@ -12,7 +12,6 @@
   imports = [
     ./sops.nix
     ../../modules/home/apps/dev.nix
-    ../../modules/home/apps/k8s.nix
     ../../modules/home/apps/syncthing.nix
     ../../modules/home/core
   ];
