@@ -1,23 +1,31 @@
 #!/usr/bin/env bash
 set -e
 
+usage() {
+  echo "Usage: $(basename "$0") [OPTIONS]"
+  echo ""
+  echo "Options:"
+  echo "  --update-secrets    Update the secrets flake input before rebuilding"
+}
+
 # Arguments
-FLAKE_UPDATE=false
+UPDATE_SECRET=false
 
 for arg in "$@"; do
   case $arg in
-    --update-flakes)
-      FLAKE_UPDATE=true
+    --update-secrets)
+      UPDATE_SECRET=true
       shift
       ;;
     *)
-      # Unknown option, just pass it along
-      shift
+      echo "Error: unrecognized argument '$arg'"
+      usage
+      exit 1
       ;;
   esac
 done
 
-if [ "$FLAKE_UPDATE" = "true" ]; then
+if [ "$UPDATE_SECRET" = "true" ]; then
   nix flake update secrets
 fi
 
@@ -51,4 +59,3 @@ else
   echo "Unknown OS. Nothing was committed"
   exit 1
 fi
-
