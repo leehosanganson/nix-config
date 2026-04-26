@@ -34,10 +34,13 @@
     };
     taps = [
       "nikitabobko/tap"
+      "homebrew-zathura/zathura"
     ];
     brews = [
       "mas"
       "fontconfig"
+      "homebrew-zathura/zathura/zathura"
+      "homebrew-zathura/zathura/zathura-pdf-mupdf"
     ];
     casks = [
       "aerospace"
