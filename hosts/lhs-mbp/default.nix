@@ -37,6 +37,7 @@
     ];
     brews = [
       "mas"
+      "fontconfig"
     ];
     casks = [
       "aerospace"
