@@ -28,7 +28,6 @@
     curl
     jq
     tmux
-    direnv
     gh
     tldr
     opencode
