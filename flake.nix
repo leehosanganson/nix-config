@@ -68,6 +68,11 @@
           home-manager.backupFileExtension = "bak";
           home-manager.extraSpecialArgs = { inherit inputs; secretsPath = secrets; };
         }
+        {
+          nixpkgs.overlays = [
+            (final: prev: { direnv = prev.direnv.overrideAttrs (old: { doCheck = false; }); })
+          ];
+        }
       ];
     };
   };
