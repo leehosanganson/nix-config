@@ -32,6 +32,9 @@
       upgrade = true;
       autoUpdate = true;
     };
+    taps = [
+      "nikitabobko/tap"
+    ];
     brews = [
       "mas"
     ];
