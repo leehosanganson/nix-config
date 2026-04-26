@@ -27,7 +27,14 @@
 
   homebrew = {
     enable = true;
-    onActivation.cleanup = "zap";
+    onActivation = {
+      cleanup = "zap";
+      upgrade = true;
+      autoUpdate = true;
+    };
+    brews = [
+      "mas"
+    ];
     casks = [
       "aerospace"
       "ghostty"
