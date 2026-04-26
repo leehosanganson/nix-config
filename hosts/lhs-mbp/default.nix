@@ -50,4 +50,8 @@
       "rectangle"
     ];
   };
+
+  environment.variables = {
+    ZATHURA_PLUGINS_PATH = "/opt/homebrew/lib/zathura";
+  };
 }
