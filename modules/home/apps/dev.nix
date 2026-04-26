@@ -27,6 +27,7 @@
     fzf
     curl
     jq
+    direnv
     tmux
     gh
     tldr
