@@ -23,6 +23,10 @@
   # Configure printers
   services.printing.enable = true;
 
+  # default fonts
+  fonts.enableDefaultPackages = true;
+  fonts.fontconfig.enable = true;
+
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;

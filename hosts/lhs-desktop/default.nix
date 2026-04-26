@@ -10,7 +10,6 @@
   imports =
     [
       ./variables.nix
-      ../../modules/nixos/fonts.nix
       ../../modules/nixos/gaming.nix
 
       # IME
