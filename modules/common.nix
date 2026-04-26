@@ -38,6 +38,7 @@
     file
     git-ignore
     xdg-utils
+    fontconfig
     curl
     gnupg
     openssl
