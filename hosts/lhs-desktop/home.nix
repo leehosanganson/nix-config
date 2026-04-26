@@ -38,5 +38,6 @@
     feishin
     devpod
     github-copilot-cli
+    zathura
   ];
 }
