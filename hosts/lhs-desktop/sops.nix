@@ -13,7 +13,7 @@
       "litellm-api-key" = { };
       "opencode-github-pat" = { };
       "fileshare-key" = { };
-      "pve-terraform-secret" = { };
+      "pve-terraform-api-token" = { };
     };
   };
 }
