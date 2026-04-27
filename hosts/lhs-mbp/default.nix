@@ -27,7 +27,21 @@
 
   homebrew = {
     enable = true;
-    onActivation.cleanup = "zap";
+    onActivation = {
+      cleanup = "zap";
+      upgrade = true;
+      autoUpdate = true;
+    };
+    taps = [
+      "nikitabobko/tap"
+      "homebrew-zathura/zathura"
+    ];
+    brews = [
+      "mas"
+      "fontconfig"
+      "homebrew-zathura/zathura/zathura"
+      "homebrew-zathura/zathura/zathura-pdf-mupdf"
+    ];
     casks = [
       "aerospace"
       "ghostty"
@@ -35,5 +49,9 @@
       "orbstack"
       "rectangle"
     ];
+  };
+
+  environment.variables = {
+    ZATHURA_PLUGINS_PATH = "/opt/homebrew/lib/zathura";
   };
 }

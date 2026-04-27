@@ -27,8 +27,8 @@
     fzf
     curl
     jq
-    tmux
     direnv
+    tmux
     gh
     tldr
     opencode

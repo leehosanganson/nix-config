@@ -39,5 +39,6 @@
     devpod
     github-copilot-cli
     runelite
+    zathura
   ];
 }
