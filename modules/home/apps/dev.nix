@@ -32,5 +32,6 @@
     gh
     tldr
     opencode
+    uv
   ];
 }
