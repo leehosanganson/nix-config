@@ -12,7 +12,10 @@
   imports = [
     ./sops.nix
     ../../modules/home/apps/dev.nix
+    ../../modules/home/apps/llama-cpp.nix
     ../../modules/home/apps/syncthing.nix
     ../../modules/home/core
   ];
+
+  services.llama-cpp.enable = true;
 }
