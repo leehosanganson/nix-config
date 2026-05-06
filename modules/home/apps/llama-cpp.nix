@@ -68,7 +68,7 @@ in {
     launchd.agents."llama-cpp" = {
       config = {
         ProgramArguments =
-          [ "${pkgs.llama}/bin/llama-server" ]
+          [ "${pkgs.llama-cpp}/bin/llama-server" ]
           ++ [ "--model" "${modelFile}" ]
           ++ [ "--host" cfg.bindAddress ]
           ++ [ "--port" (builtins.toString cfg.port) ]
