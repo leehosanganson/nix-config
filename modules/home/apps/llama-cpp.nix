@@ -2,12 +2,6 @@
 
 let
   cfg = config.services.llama-cpp;
-
-  modelFile = pkgs.fetchurl {
-    url = "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF/resolve/main/Qwen3.6-35B-A3B-UD-IQ2_M.gguf";
-    sha256 = "0hrx82chg9i3rr75nrsdnvfxaavckb7h54c2sc88pbz1swgfzrrb";
-  };
-
 in {
   options.services.llama-cpp = {
     enable = lib.mkOption {
@@ -26,12 +20,6 @@ in {
       type = lib.types.str;
       default = "127.0.0.1";
       description = "Network address to bind the server to.";
-    };
-
-    modelFile = lib.mkOption {
-      type = lib.types.path;
-      default = modelFile;
-      description = "Path to the GGUF model file.";
     };
 
     gpuLayers = lib.mkOption {
@@ -66,17 +54,22 @@ in {
 
     logDirectory = lib.mkOption {
       type = lib.types.str;
-      default = "/Users/ansonlee/logs";
+      default = "${config.home.homeDirectory}/logs";
       description = "Directory for llama.cpp server logs.";
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = let
+    modelFile = pkgs.fetchurl {
+      url = "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF/resolve/main/Qwen3.6-35B-A3B-UD-IQ2_M.gguf";
+      sha256 = "0hrx82chg9i3rr75nrsdnvfxaavckb7h54c2sc88pbz1swgfzrrb";
+    };
+  in lib.mkIf cfg.enable {
     launchd.agents."llama-cpp" = {
       config = {
         ProgramArguments =
           [ "${pkgs.llama}/bin/llama-server" ]
-          ++ [ "--model" "${cfg.modelFile}" ]
+          ++ [ "--model" "${modelFile}" ]
           ++ [ "--host" cfg.bindAddress ]
           ++ [ "--port" (builtins.toString cfg.port) ]
           ++ [ "--n-gpu-layers" (builtins.toString cfg.gpuLayers) ]
