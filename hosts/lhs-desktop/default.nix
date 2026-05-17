@@ -76,6 +76,13 @@
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;
 
+  # Disable periodic Wi-Fi background scanning (prevents lag spikes)
+  networking.networkmanager.settings = {
+    "wifi" = {
+      "scan-frequency-delta" = 0;
+    };
+  };
+
   # Hardware
   hardware.graphics = {
     enable = true;
