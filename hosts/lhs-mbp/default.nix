@@ -43,6 +43,7 @@
       "homebrew-zathura/zathura/zathura-pdf-mupdf"
     ];
     casks = [
+      "vlc"
       "aerospace"
       "ghostty"
       "mos"
