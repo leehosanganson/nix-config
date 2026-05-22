@@ -40,5 +40,6 @@
     github-copilot-cli
     runelite
     zathura
+    vlc
   ];
 }
