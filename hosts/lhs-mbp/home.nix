@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   home = {
@@ -14,5 +14,9 @@
     ../../modules/home/apps/dev.nix
     ../../modules/home/apps/syncthing.nix
     ../../modules/home/core
+  ];
+
+  home.packages = with pkgs; [
+    code
   ];
 }
