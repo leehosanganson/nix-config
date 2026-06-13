@@ -34,25 +34,17 @@
     };
     taps = [
       "nikitabobko/tap"
-      "homebrew-zathura/zathura"
     ];
     brews = [
       "mas"
       "fontconfig"
-      "homebrew-zathura/zathura/zathura"
-      "homebrew-zathura/zathura/zathura-pdf-mupdf"
     ];
     casks = [
       "vlc"
       "aerospace"
       "ghostty"
-      "mos"
       "orbstack"
       "rectangle"
     ];
-  };
-
-  environment.variables = {
-    ZATHURA_PLUGINS_PATH = "/opt/homebrew/lib/zathura";
   };
 }
