@@ -53,5 +53,6 @@
     nodejs
     python3
     cargo
+    docker-compose
   ];
 }
