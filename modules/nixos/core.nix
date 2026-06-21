@@ -16,7 +16,7 @@
   users.users.ansonlee = {
     isNormalUser = true;
     description = "Anson Lee";
-    extraGroups = [ "networkmanager" "wheel" "podman" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.zsh;
   };
 
