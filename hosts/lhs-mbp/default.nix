@@ -43,6 +43,7 @@
       "vlc"
       "aerospace"
       "ghostty"
+      "linearmouse"
       "orbstack"
       "rectangle"
     ];
