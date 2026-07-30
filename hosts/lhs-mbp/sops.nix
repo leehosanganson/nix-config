@@ -13,6 +13,7 @@
       "litellm-api-key" = { };
       "opencode-github-pat" = { };
       "fileshare-key" = { };
+      "opencode-api-key" = { };
     };
   };
 }
