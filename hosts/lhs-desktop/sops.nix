@@ -14,6 +14,7 @@
       "opencode-github-pat" = { };
       "fileshare-key" = { };
       "pve-terraform-api-token" = { };
+      "opencode-api-key" = { };
     };
   };
 }
