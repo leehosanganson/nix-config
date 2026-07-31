@@ -16,6 +16,7 @@
     enable = true;
     xwayland.enable = true;
     package = pkgs.hyprland;
+    configType = "lua";
 
     settings = {
       "$terminal" = "ghostty";

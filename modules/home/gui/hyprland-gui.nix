@@ -71,7 +71,6 @@
 
   gtk = {
     enable = true;
-    gtk4.theme = config.gtk.theme;
   };
 
   # GTK CSS transparency via stylix (correct option)
