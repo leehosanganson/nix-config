@@ -36,7 +36,8 @@
       buildInputs = [ makeWrapper ];
       postBuild = ''
         wrapProgram $out/bin/moonlight \
-          --set FORCE_VAAPI 1
+          --set FORCE_VAAPI 1 \
+          --set SDL_VIDEODRIVER wayland
       '';
     })
     bitwarden-desktop
