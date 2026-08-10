@@ -30,15 +30,14 @@
     google-chrome
     discord
     obsidian
-    (symlinkJoin {
-      name = "moonlight-fix";
-      paths = [ moonlight-qt ];
-      buildInputs = [ makeWrapper ];
-      postBuild = ''
-        wrapProgram $out/bin/moonlight \
-          --set FORCE_VAAPI 1
-      '';
-    })
+    # (symlinkJoin {
+    #   name = "moonlight-fix";
+    #   paths = [ moonlight-qt ];
+    #   buildInputs = [ makeWrapper ];
+    #   postBuild = ''
+    #     wrapProgram $out/bin/moonlight \ --set FORCE_VAAPI 1 '';
+    # })
+    moonlight-qt
     bitwarden-desktop
     steam
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
