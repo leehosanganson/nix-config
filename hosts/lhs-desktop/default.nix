@@ -84,11 +84,11 @@
   };
 
   # Hardware
+  hardware.enableAllFirmware = true;
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
-  hardware.enableAllFirmware = true;
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
