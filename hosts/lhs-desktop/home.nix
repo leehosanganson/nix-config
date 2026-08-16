@@ -27,7 +27,7 @@
   # Applications
   home.packages = with pkgs; [
     ghostty
-    google-chrome
+    (google-chrome.override { commandLineArgs = "--disable-background-timer-throttling --disable-renderer-backgrounding"; })
     discord
     obsidian
     # (symlinkJoin {
