@@ -34,5 +34,6 @@
     opencode
     uv
     gnumake
+    pi-coding-agent
   ];
 }
