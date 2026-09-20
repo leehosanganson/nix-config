@@ -32,6 +32,7 @@
     gh
     tldr
     opencode
+    hunk
     uv
     gnumake
     pi-coding-agent
