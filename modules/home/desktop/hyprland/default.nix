@@ -37,7 +37,7 @@
 
       monitor = [
         "desc:ASUSTek COMPUTER INC ASUS VG249 0x00000BBB,1920x1080@144,1440x0,1"
-        "desc:Iiyama North America PL3467WQ 1214232501442,3440x1440@165,1440x1080,1"
+        "desc:iiyama Corporation PL3467WQ 1214232501442,3440x1440@165,1440x1080,1"
         "desc:HKC OVERSEAS LIMITED 27E3Q 0000000000001,preferred,0x300,1,transform,1"
       ];
 
