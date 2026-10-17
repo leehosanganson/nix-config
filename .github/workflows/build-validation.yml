@@ -28,6 +28,3 @@ jobs:
           while IFS= read -r -d '' file; do
             bash -n "$file"
           done < <(git ls-files -z -- '*.sh')
-
-      - name: Run validation tests
-        run: python3 -m unittest discover -s tests

@@ -4,10 +4,9 @@
 
 The Build validation workflow runs without repository secrets or access to the
 private `secrets` flake input. It parses every Git-tracked `.nix` file with
-`nix-instantiate --parse`, checks Git-tracked `.sh` files with `bash -n`, and
-runs the standard-library Python tests with
-`python3 -m unittest discover -s tests`. It does not evaluate or build the flake, fetch SOPS data, or claim that
-any host system was built.
+`nix-instantiate --parse` and checks Git-tracked `.sh` files with `bash -n`.
+It does not evaluate or build the flake, fetch SOPS data, or claim that any host
+system was built.
 
 ## Local pre-commit checks
 
@@ -17,9 +16,9 @@ Enable the versioned hook in this checkout with:
 git config core.hooksPath .githooks
 ```
 
-The hook runs the same Nix syntax, shell syntax, and Python unittest checks as
-CI. It requires `git`, `nix-instantiate`, `bash`, and `python3` on `PATH`. It
-uses no hook framework, does not evaluate the flake, and does not fetch SOPS or
+The hook runs the same Nix syntax and shell syntax checks as CI. It requires
+`git`, `nix-instantiate`, and `bash` on `PATH`. It uses no hook framework, does
+not evaluate the flake, and does not fetch SOPS or
 the private `secrets` input. The hook checks files known to Git, including
 staged and unstaged tracked files; newly added untracked files are checked after
 they have been added to Git's index.

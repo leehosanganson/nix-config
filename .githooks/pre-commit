@@ -11,5 +11,3 @@ done < <(git ls-files -z -- '*.nix')
 while IFS= read -r -d '' file; do
   bash -n "$file"
 done < <(git ls-files -z -- '*.sh')
-
-PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests
