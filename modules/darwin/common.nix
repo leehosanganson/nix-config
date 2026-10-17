@@ -1,8 +1,10 @@
-{ ... }:
+{ pkgs, ... }:
 {
   system.stateVersion = 6;
   nix.enable = false;
   nixpkgs.hostPlatform = "aarch64-darwin";
+
+  fonts.packages = [ pkgs.nerd-fonts.jetbrains-mono ];
 
   environment.variables = {
     EDITOR = "vim";
