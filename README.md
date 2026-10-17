@@ -45,6 +45,16 @@ The NixOS target is Linux-only, and both Darwin targets are configured for Apple
 
 ## `rebuild.sh`
 
-On its intended host, `./rebuild.sh` switches the configuration selected by the machine's `hostname`. After a successful switch, it records the active generation in a Git commit and pushes that commit to `origin main`. Use `./rebuild.sh --update-secrets` to update the `secrets` flake input before switching (the flag works on either OS).
+Run `./rebuild.sh` on the intended host to switch its configuration. By default, the script uses the machine's hostname (without any domain suffix); it accepts only `lhs-desktop`, `lhs-mbp`, and `mac-mini`. You can select one explicitly with `--host`, for example:
 
-**Caution:** the script currently runs `git add .` before attempting the switch. That stages every change and untracked file under the repository, not just configuration or generation history; review `git status` and ensure there is nothing sensitive or unrelated in the working tree before running it. The script is intended for a clean, correctly targeted host checkout with permission to push to `origin main`. It does not make a commit or push if the switch fails.
+```sh
+./rebuild.sh --host lhs-desktop
+./rebuild.sh --host lhs-mbp
+./rebuild.sh --host mac-mini
+```
+
+The selected host must match the machine's operating system: `lhs-desktop` requires NixOS, while `lhs-mbp` and `mac-mini` require macOS. Run `./rebuild.sh --help` for the available options.
+
+Before running the script, use `git add <path>` for each tracked configuration file you intend to deploy (for example, `git add hosts/lhs-desktop/default.nix`). The script does not stage files for you: it rejects unstaged tracked edits, untracked files, and an empty staging area. Only the staged changes are committed after a successful switch. Afterward, it pushes that commit to `origin main`; the checkout therefore needs permission to push there. A failed switch is not committed or pushed.
+
+Use `./rebuild.sh --update-secrets` to update the `secrets` flake input before switching (on either OS). If this changes `flake.lock`, the script stops because the lockfile update is unstaged. Stage the intended lockfile change with `git add flake.lock`, then rerun `./rebuild.sh` to rebuild and commit the staged changes.
