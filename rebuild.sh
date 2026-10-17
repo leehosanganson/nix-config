@@ -3,6 +3,9 @@ set -e
 
 usage() {
   echo "Usage: $(basename "$0") [--host HOST] [--update-secrets]"
+  echo "Stage the configuration files you intend to deploy with git add before running this script."
+  echo "Only already-staged changes are committed after a successful rebuild."
+  echo "With --update-secrets, stage any resulting flake.lock update and rerun the script."
   echo ""
   echo "Options:"
   echo "  --host HOST         Rebuild the named flake host (lhs-desktop, lhs-mbp, mac-mini)"
@@ -89,23 +92,29 @@ if [[ "$HOST_PLATFORM" != "$PLATFORM" ]]; then
   exit 1
 fi
 
-if [[ "$UPDATE_SECRET" == "true" ]]; then
-  nix flake update secrets
-fi
-
 # Refuse to include files that are outside the tracked configuration history.
 if [ -n "$(git ls-files --others --exclude-standard)" ]; then
   echo "Error: untracked files exist. Move or remove them before rebuilding."
   exit 1
 fi
 
-if ! git diff --cached --quiet; then
-  echo "Error: staged changes exist. Commit or unstage them before rebuilding."
+if ! git diff --quiet; then
+  echo "Error: unstaged tracked changes exist. Stage or discard them before rebuilding."
   exit 1
 fi
 
-# Stage tracked changes only
-git add -u
+if git diff --cached --quiet; then
+  echo "Error: no staged changes. Stage the configuration files to deploy with git add before rebuilding."
+  exit 1
+fi
+
+if [ "$UPDATE_SECRET" = "true" ]; then
+  nix flake update secrets
+  if ! git diff --quiet; then
+    echo "Error: unstaged tracked changes exist after updating secrets. Stage them and rerun the rebuild."
+    exit 1
+  fi
+fi
 
 # Rebuild
 if [[ "$PLATFORM" == "darwin" ]]; then
