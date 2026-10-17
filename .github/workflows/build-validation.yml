@@ -14,16 +14,25 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
-      - name: Require private secrets input key
+      - name: Check private secrets input key availability
+        id: secrets
         env:
           NIX_SECRETS_DEPLOY_KEY: ${{ secrets.NIX_SECRETS_DEPLOY_KEY }}
         run: |
-          if [ -z "$NIX_SECRETS_DEPLOY_KEY" ]; then
-            echo "::error::Configure the NIX_SECRETS_DEPLOY_KEY Actions secret with read access to the locked secrets input."
-            exit 1
+          if [ -n "$NIX_SECRETS_DEPLOY_KEY" ]; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Require private secrets input key for trusted events
+        if: steps.secrets.outputs.available != 'true' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork != true)
+        run: |
+          echo "::error::Configure the NIX_SECRETS_DEPLOY_KEY Actions secret with read access to the locked secrets input."
+          exit 1
+
       - name: Load private secrets input key
+        if: steps.secrets.outputs.available == 'true'
         uses: webfactory/ssh-agent@dc588b651fe13675774614f8e6a936a468676387
         with:
           ssh-private-key: ${{ secrets.NIX_SECRETS_DEPLOY_KEY }}
@@ -38,14 +47,34 @@ jobs:
         with:
           name: nix-community
 
+      - name: Check Nix flake syntax
+        run: nix-instantiate --parse flake.nix > /dev/null
+
       - name: Build NixOS system closure
+        if: steps.secrets.outputs.available == 'true'
         run: >-
           nix build --no-link --print-build-logs --no-write-lock-file
           .#nixosConfigurations.lhs-desktop.config.system.build.toplevel
 
-      - name: Evaluate macOS system derivations
+      # Linux can evaluate these aarch64-darwin derivations but cannot build them.
+      - name: Evaluate (do not build) macOS system derivations
+        if: steps.secrets.outputs.available == 'true'
         run: |
           nix eval --raw --no-write-lock-file --impure --expr \
             '(builtins.getFlake (toString ./.)).darwinConfigurations."mac-mini".system.drvPath'
           nix eval --raw --no-write-lock-file --impure --expr \
             '(builtins.getFlake (toString ./.)).darwinConfigurations."lhs-mbp".system.drvPath'
+
+      - name: Report validation coverage
+        if: always()
+        env:
+          SECRETS_AVAILABLE: ${{ steps.secrets.outputs.available }}
+          PULL_REQUEST_FORK: ${{ github.event.pull_request.head.repo.fork }}
+        run: |
+          if [ "$SECRETS_AVAILABLE" = "true" ]; then
+            echo "NixOS system closure built with the private secrets input." >> "$GITHUB_STEP_SUMMARY"
+            echo "macOS system derivations evaluated only; Linux CI cannot build the aarch64-darwin outputs." >> "$GITHUB_STEP_SUMMARY"
+          elif [ "$PULL_REQUEST_FORK" = "true" ]; then
+            echo "::notice::Fork pull requests do not receive NIX_SECRETS_DEPLOY_KEY; secret-dependent flake evaluation and builds were skipped. Nix syntax validation still ran."
+            echo "Fork PR: NIX_SECRETS_DEPLOY_KEY is unavailable, so secret-dependent flake evaluation/builds were skipped; Nix syntax validation ran." >> "$GITHUB_STEP_SUMMARY"
+          fi
