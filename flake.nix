@@ -29,14 +29,16 @@
         inputs.stylix.nixosModules.stylix
         home-manager.nixosModules.home-manager
         {
-          home-manager.users.ansonlee = ./hosts/lhs-desktop/home.nix;
-          home-manager.extraSpecialArgs = {
-            inherit inputs;
-            secretsPath = secrets;
+          home-manager = {
+            users.ansonlee = ./hosts/lhs-desktop/home.nix;
+            extraSpecialArgs = {
+              inherit inputs;
+              secretsPath = secrets;
+            };
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            backupFileExtension = "bak";
           };
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "bak";
         }
       ];
     };
@@ -47,11 +49,13 @@
         ./hosts/mac-mini
         home-manager.darwinModules.home-manager
         {
-          home-manager.users.ansonlee = ./hosts/mac-mini/home.nix;
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "bak";
-          home-manager.extraSpecialArgs = { inherit inputs; secretsPath = secrets; };
+          home-manager = {
+            users.ansonlee = ./hosts/mac-mini/home.nix;
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            backupFileExtension = "bak";
+            extraSpecialArgs = { inherit inputs; secretsPath = secrets; };
+          };
         }
       ];
     };
@@ -62,11 +66,13 @@
         ./hosts/lhs-mbp
         home-manager.darwinModules.home-manager
         {
-          home-manager.users.ansonlee = ./hosts/lhs-mbp/home.nix;
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "bak";
-          home-manager.extraSpecialArgs = { inherit inputs; secretsPath = secrets; };
+          home-manager = {
+            users.ansonlee = ./hosts/lhs-mbp/home.nix;
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            backupFileExtension = "bak";
+            extraSpecialArgs = { inherit inputs; secretsPath = secrets; };
+          };
         }
         {
           nixpkgs.overlays = [

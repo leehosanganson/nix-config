@@ -72,19 +72,25 @@
   };
 
   # Networking
-  networking.hostName = "lhs-desktop"; # Define your hostname.
-  networking.networkmanager.enable = true;
-  networking.networkmanager.wifi.powersave = false;
+  networking = {
+    hostName = "lhs-desktop"; # Define your hostname.
+    networkmanager = {
+      enable = true;
+      wifi.powersave = false;
+    };
+  };
 
   # Hardware
-  hardware.enableAllFirmware = true;
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
+  hardware = {
+    enableAllFirmware = true;
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
   };
 
   # Locale

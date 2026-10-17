@@ -38,36 +38,37 @@
     style.name = "kvantum";
   };
 
-  # Kvantum theme selection
-  xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
-    [General]
-    theme=Base16Kvantum
-  '';
+  # Kvantum configuration and theme assets
+  xdg.configFile = {
+    "Kvantum/kvantum.kvconfig".text = ''
+      [General]
+      theme=Base16Kvantum
+    '';
 
-  # Kvantum theme config with translucency
-  xdg.configFile."Kvantum/Base16Kvantum/Base16Kvantum.kvconfig".text = ''
-    [General]
-    author=Stylix
-    comment=Base16 Kvantum theme with translucency
-    composite=true
-    translucent_windows=true
-    reduce_window_opacity=15
-    reduce_menu_opacity=5
-    shadowless_popup=false
-    opaque_colors=false
+    "Kvantum/Base16Kvantum/Base16Kvantum.kvconfig".text = ''
+      [General]
+      author=Stylix
+      comment=Base16 Kvantum theme with translucency
+      composite=true
+      translucent_windows=true
+      reduce_window_opacity=15
+      reduce_menu_opacity=5
+      shadowless_popup=false
+      opaque_colors=false
 
-    [Hacks]
-    transparent_dolphin_view=true
-    blur_only_active_window=false
-  '';
+      [Hacks]
+      transparent_dolphin_view=true
+      blur_only_active_window=false
+    '';
 
-  # Minimal valid SVG required by Kvantum alongside the kvconfig
-  xdg.configFile."Kvantum/Base16Kvantum/Base16Kvantum.svg".text = ''
-    <?xml version="1.0" encoding="UTF-8"?>
-    <svg xmlns="http://www.w3.org/2000/svg" width="1" height="1">
-      <rect width="1" height="1" fill="none"/>
-    </svg>
-  '';
+    # Minimal valid SVG required by Kvantum alongside the kvconfig
+    "Kvantum/Base16Kvantum/Base16Kvantum.svg".text = ''
+      <?xml version="1.0" encoding="UTF-8"?>
+      <svg xmlns="http://www.w3.org/2000/svg" width="1" height="1">
+        <rect width="1" height="1" fill="none"/>
+      </svg>
+    '';
+  };
 
   gtk = {
     enable = true;
