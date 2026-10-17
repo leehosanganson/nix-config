@@ -2,6 +2,7 @@
 {
   networking.hostName = "lhs-mbp";
   system.primaryUser = "ansonlee";
+  environment.variables.TERMINAL = "ghostty";
 
   imports = [
     ../../modules/common.nix

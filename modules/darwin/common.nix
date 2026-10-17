@@ -4,6 +4,12 @@
   nix.enable = false;
   nixpkgs.hostPlatform = "aarch64-darwin";
 
+  environment.variables = {
+    EDITOR = "vim";
+    VISUAL = "vim";
+    TERM = "xterm-256color";
+  };
+
   services.openssh = {
     enable = true;
     extraConfig = ''
