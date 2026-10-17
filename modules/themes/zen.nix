@@ -12,10 +12,8 @@
       gaps-out = 6;
       active-opacity = 0.99;
       inactive-opacity = 0.98;
-      blur = false;
       border-size = 4;
       animation-speed = "medium"; # "fast" | "medium" | "slow"
-      fetch = "none"; # "nerdfetch" | "neofetch" | "pfetch" | "none"
       textColorOnWallpaper =
         config.lib.stylix.colors.base00; # Color of the text displayed on the wallpaper (Lockscreen, display manager, ...)
     };
