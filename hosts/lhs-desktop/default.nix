@@ -17,8 +17,6 @@
       ../../modules/ime/jp.nix
       ../../modules/ime/zh.nix
 
-      # Choose one
-      # ../../modules/nixos/plasma.nix
       ../../modules/nixos/hyprland.nix
 
       # Don't change
