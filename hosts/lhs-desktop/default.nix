@@ -21,6 +21,7 @@
 
       # Don't change
       ../../modules/common.nix
+      ../../modules/ssh/authorized-keys.nix
       ../../modules/nixos/core.nix
       ./hardware-configuration.nix
     ];
@@ -67,6 +68,14 @@
 
     # Graphical Splash boot
     plymouth.enable = true;
+  };
+
+  services.openssh = {
+    enable = true;
+    settings = {
+      PermitRootLogin = "no";
+      PasswordAuthentication = false;
+    };
   };
 
   # Networking
