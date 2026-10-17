@@ -2,30 +2,94 @@
 set -e
 
 usage() {
-  echo "Usage: $(basename "$0") [OPTIONS]"
+  echo "Usage: $(basename "$0") [--host HOST] [--update-secrets]"
   echo ""
   echo "Options:"
+  echo "  --host HOST         Rebuild the named flake host (lhs-desktop, lhs-mbp, mac-mini)"
   echo "  --update-secrets    Update the secrets flake input before rebuilding"
+  echo "  -h, --help          Show this help"
 }
 
-# Arguments
 UPDATE_SECRET=false
+HOST=""
+HOST_SET=false
 
-for arg in "$@"; do
-  case $arg in
+while [[ $# -gt 0 ]]; do
+  case "$1" in
     --update-secrets)
       UPDATE_SECRET=true
       shift
       ;;
-    *)
-      echo "Error: unrecognized argument '$arg'"
+    --host)
+      if [[ $# -lt 2 || -z "$2" ]]; then
+        echo "Error: --host requires a host name" >&2
+        usage >&2
+        exit 1
+      fi
+      if [[ "$HOST_SET" == "true" ]]; then
+        echo "Error: --host may only be specified once" >&2
+        usage >&2
+        exit 1
+      fi
+      HOST="$2"
+      HOST_SET=true
+      shift 2
+      ;;
+    -h|--help)
       usage
+      exit 0
+      ;;
+    *)
+      echo "Error: unrecognized argument '$1'" >&2
+      usage >&2
       exit 1
       ;;
   esac
 done
 
-if [ "$UPDATE_SECRET" = "true" ]; then
+SYSTEM="$(uname -s)"
+case "$SYSTEM" in
+  Darwin)
+    PLATFORM="darwin"
+    ;;
+  Linux)
+    if [[ -f /etc/NIXOS ]]; then
+      PLATFORM="nixos"
+    else
+      echo "Error: Linux is not a supported NixOS rebuild host" >&2
+      exit 1
+    fi
+    ;;
+  *)
+    echo "Error: unsupported operating system '$SYSTEM'" >&2
+    exit 1
+    ;;
+esac
+
+if [[ "$HOST_SET" != "true" ]]; then
+  CURRENT_HOST="$(hostname)"
+  HOST="${CURRENT_HOST%%.*}"
+fi
+
+case "$HOST" in
+  lhs-desktop)
+    HOST_PLATFORM="nixos"
+    ;;
+  lhs-mbp|mac-mini)
+    HOST_PLATFORM="darwin"
+    ;;
+  *)
+    echo "Error: unsupported host '$HOST'; choose lhs-desktop, lhs-mbp, or mac-mini" >&2
+    exit 1
+    ;;
+esac
+
+if [[ "$HOST_PLATFORM" != "$PLATFORM" ]]; then
+  echo "Error: host '$HOST' is a $HOST_PLATFORM target and cannot be rebuilt on $SYSTEM" >&2
+  exit 1
+fi
+
+if [[ "$UPDATE_SECRET" == "true" ]]; then
   nix flake update secrets
 fi
 
@@ -33,8 +97,8 @@ fi
 git add .
 
 # Rebuild
-if [[ "$(uname)" == "Darwin" ]]; then
-  if sudo darwin-rebuild switch --flake .#$(hostname); then
+if [[ "$PLATFORM" == "darwin" ]]; then
+  if sudo darwin-rebuild switch --flake ".#$HOST"; then
     gen=$(sudo darwin-rebuild --list-generations | grep current | awk '{print $1}')
     git commit -m "$HOSTNAME OSX Generation $gen: $(date +'%Y-%m-%d %H:%M:%S')"
     git push origin main
@@ -43,8 +107,8 @@ if [[ "$(uname)" == "Darwin" ]]; then
     echo "Build Failed. Fix the errors above. Nothing was committed"
     exit 1
   fi
-elif [[ -f /etc/NIXOS ]]; then
-  if sudo nixos-rebuild switch --flake .#$(hostname); then
+elif [[ "$PLATFORM" == "nixos" ]]; then
+  if sudo nixos-rebuild switch --flake ".#$HOST"; then
     # Commit the changes
     gen=$(nixos-rebuild list-generations | grep True | awk '{print $1}')
     git commit -m "$HOSTNAME NixOs Generation $gen: $(date +'%Y-%m-%d %H:%M:%S')"
@@ -55,7 +119,4 @@ elif [[ -f /etc/NIXOS ]]; then
     echo "Build Failed. Fix the errors above. Nothing was committed"
     exit 1
   fi
-else
-  echo "Unknown OS. Nothing was committed"
-  exit 1
 fi
