@@ -93,8 +93,19 @@ if [[ "$UPDATE_SECRET" == "true" ]]; then
   nix flake update secrets
 fi
 
-# Stage
-git add .
+# Refuse to include files that are outside the tracked configuration history.
+if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+  echo "Error: untracked files exist. Move or remove them before rebuilding."
+  exit 1
+fi
+
+if ! git diff --cached --quiet; then
+  echo "Error: staged changes exist. Commit or unstage them before rebuilding."
+  exit 1
+fi
+
+# Stage tracked changes only
+git add -u
 
 # Rebuild
 if [[ "$PLATFORM" == "darwin" ]]; then
