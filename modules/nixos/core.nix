@@ -38,7 +38,26 @@
   fonts = {
     enableDefaultPackages = true;
     fontconfig.enable = true;
+    packages = with pkgs; [
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.hack
+      nerd-fonts.fira-code
+      nerd-fonts._0xproto
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-color-emoji
+    ];
   };
+
+  environment.variables = {
+    EDITOR = "vim";
+    VISUAL = "vim";
+    TERMINAL = "ghostty";
+    TERM = "xterm-256color";
+    BROWSER = "zen";
+  };
+
+  environment.systemPackages = with pkgs; [ xdg-utils ];
 
   security.rtkit.enable = true;
 }
