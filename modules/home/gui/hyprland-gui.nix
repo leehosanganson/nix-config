@@ -1,7 +1,6 @@
 { lib, pkgs, config, ... }: {
   home.packages = with pkgs; [
     waybar # Status Bar
-    awww # Wallpaper
     hyprpaper # Wallpaper
     wofi # App Menu
     swaynotificationcenter # notification center daemon
