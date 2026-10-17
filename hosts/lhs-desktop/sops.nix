@@ -11,11 +11,8 @@
     age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
     secrets = {
       "litellm-pi-api-key" = { };
-      "litellm-api-key" = { };
-      "opencode-github-pat" = { };
       "fileshare-key" = { };
       "pve-terraform-api-token" = { };
-      "opencode-api-key" = { };
     };
   };
 }
