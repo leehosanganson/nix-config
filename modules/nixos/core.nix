@@ -20,22 +20,25 @@
     shell = pkgs.zsh;
   };
 
-  # Configure printers
-  services.printing.enable = true;
-
-  # default fonts
-  fonts.enableDefaultPackages = true;
-  fonts.fontconfig.enable = true;
-
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-    wireplumber.enable = true;
+  # Configure printers and audio.
+  services = {
+    printing.enable = true;
+    pulseaudio.enable = false;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+      wireplumber.enable = true;
+    };
   };
+
+  # Default fonts
+  fonts = {
+    enableDefaultPackages = true;
+    fontconfig.enable = true;
+  };
+
+  security.rtkit.enable = true;
 }
