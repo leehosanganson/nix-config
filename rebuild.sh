@@ -30,6 +30,7 @@ if [ "$UPDATE_SECRET" = "true" ]; then
 fi
 
 # Stage
+git pull origin main
 git add .
 
 # Rebuild

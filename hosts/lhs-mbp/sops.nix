@@ -10,10 +10,10 @@
     defaultSopsFile = "${secretsPath}/secrets.yaml";
     age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
     secrets = {
-      "litellm-api-key" = { };
+      "litellm-pi-api-key" = { };
+      "litellm-code-completion-api-key" = { };
       "opencode-github-pat" = { };
       "fileshare-key" = { };
-      "opencode-api-key" = { };
     };
   };
 }
