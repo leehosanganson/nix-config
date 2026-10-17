@@ -1,0 +1,51 @@
+name: Build validation
+
+on:
+  pull_request:
+  push:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Require private secrets input key
+        env:
+          NIX_SECRETS_DEPLOY_KEY: ${{ secrets.NIX_SECRETS_DEPLOY_KEY }}
+        run: |
+          if [ -z "$NIX_SECRETS_DEPLOY_KEY" ]; then
+            echo "::error::Configure the NIX_SECRETS_DEPLOY_KEY Actions secret with read access to the locked secrets input."
+            exit 1
+          fi
+
+      - name: Load private secrets input key
+        uses: webfactory/ssh-agent@dc588b651fe13675774614f8e6a936a468676387
+        with:
+          ssh-private-key: ${{ secrets.NIX_SECRETS_DEPLOY_KEY }}
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@448cde739abec1eaf0646249e3d25bb8d9bc7702
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Use Nix community binary cache
+        uses: cachix/cachix-action@ad2ddac53f961de1989924296a1f236fcfbaa4fc
+        with:
+          name: nix-community
+
+      - name: Build NixOS system closure
+        run: >-
+          nix build --no-link --print-build-logs --no-write-lock-file
+          .#nixosConfigurations.lhs-desktop.config.system.build.toplevel
+
+      - name: Evaluate macOS system derivations
+        run: |
+          nix eval --raw --no-write-lock-file --impure --expr \
+            '(builtins.getFlake (toString ./.)).darwinConfigurations."mac-mini".system.drvPath'
+          nix eval --raw --no-write-lock-file --impure --expr \
+            '(builtins.getFlake (toString ./.)).darwinConfigurations."lhs-mbp".system.drvPath'
