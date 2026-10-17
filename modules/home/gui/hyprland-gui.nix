@@ -1,8 +1,6 @@
 { lib, pkgs, config, ... }: {
   home.packages = with pkgs; [
-    kitty # Hyprland Default Terminal
     waybar # Status Bar
-    awww # Wallpaper
     hyprpaper # Wallpaper
     wofi # App Menu
     swaynotificationcenter # notification center daemon
