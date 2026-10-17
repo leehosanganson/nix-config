@@ -14,125 +14,20 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
-      - name: Check private secrets input key availability
-        id: secrets
-        env:
-          NIX_SECRETS_DEPLOY_KEY: ${{ secrets.NIX_SECRETS_DEPLOY_KEY }}
-        run: |
-          if [ -n "$NIX_SECRETS_DEPLOY_KEY" ]; then
-            echo "available=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "available=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Require private secrets input key for trusted events
-        if: steps.secrets.outputs.available != 'true' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork != true)
-        run: |
-          echo "::error::Configure the NIX_SECRETS_DEPLOY_KEY Actions secret with read access to the locked secrets input."
-          exit 1
-
-      - name: Load private secrets input key
-        if: steps.secrets.outputs.available == 'true'
-        uses: webfactory/ssh-agent@dc588b651fe13675774614f8e6a936a468676387
-        with:
-          ssh-private-key: ${{ secrets.NIX_SECRETS_DEPLOY_KEY }}
-
       - name: Install Nix
         uses: cachix/install-nix-action@448cde739abec1eaf0646249e3d25bb8d9bc7702
-        with:
-          github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Use Nix community binary cache
-        uses: cachix/cachix-action@ad2ddac53f961de1989924296a1f236fcfbaa4fc
-        with:
-          name: nix-community
-
-      - name: Check Nix flake syntax
-        id: nix_syntax
-        run: nix-instantiate --parse flake.nix > /dev/null
-
-      - name: Build NixOS system closure
-        id: nixos_build
-        if: steps.secrets.outputs.available == 'true'
-        run: >-
-          nix build --no-link --print-build-logs --no-write-lock-file
-          .#nixosConfigurations.lhs-desktop.config.system.build.toplevel
-
-      # Linux can evaluate these aarch64-darwin derivations but cannot build them.
-      - name: Evaluate (do not build) macOS system derivations
-        id: macos_eval
-        if: steps.secrets.outputs.available == 'true'
+      - name: Validate Nix syntax
         run: |
-          nix eval --raw --no-write-lock-file --impure --expr \
-            '(builtins.getFlake (toString ./.)).darwinConfigurations."mac-mini".system.drvPath'
-          nix eval --raw --no-write-lock-file --impure --expr \
-            '(builtins.getFlake (toString ./.)).darwinConfigurations."lhs-mbp".system.drvPath'
+          while IFS= read -r -d '' file; do
+            nix-instantiate --parse "$file" > /dev/null
+          done < <(git ls-files -z -- '*.nix')
 
-      - name: Report validation coverage
-        if: always()
-        env:
-          SECRETS_AVAILABLE: ${{ steps.secrets.outputs.available }}
-          PULL_REQUEST_FORK: ${{ github.event.pull_request.head.repo.fork }}
-          NIX_SYNTAX_OUTCOME: ${{ steps.nix_syntax.outcome }}
-          NIX_SYNTAX_SUCCEEDED: ${{ steps.nix_syntax.outcome == 'success' }}
-          NIXOS_BUILD_OUTCOME: ${{ steps.nixos_build.outcome }}
-          NIXOS_BUILD_SUCCEEDED: ${{ steps.nixos_build.outcome == 'success' }}
-          MACOS_EVAL_OUTCOME: ${{ steps.macos_eval.outcome }}
-          MACOS_EVAL_SUCCEEDED: ${{ steps.macos_eval.outcome == 'success' }}
+      - name: Validate shell syntax
         run: |
-          {
-            echo "## Validation coverage"
+          while IFS= read -r -d '' file; do
+            bash -n "$file"
+          done < <(git ls-files -z -- '*.sh')
 
-            if [ "$SECRETS_AVAILABLE" = "true" ]; then
-              echo "Private secrets input was available."
-            elif [ "$PULL_REQUEST_FORK" = "true" ]; then
-              echo "Private secrets input is unavailable to fork pull requests; secret-dependent validation is unsupported and was skipped."
-            else
-              echo "Private secrets input is unavailable; trusted-event validation is blocked by the required-key check."
-            fi
-
-            if [ "$NIX_SYNTAX_SUCCEEDED" = "true" ]; then
-              echo "Nix flake syntax: passed."
-            else
-              case "$NIX_SYNTAX_OUTCOME" in
-                failure) echo "Nix flake syntax: failed." ;;
-                skipped) echo "Nix flake syntax: skipped (an earlier workflow step did not complete successfully)." ;;
-                cancelled) echo "Nix flake syntax: cancelled." ;;
-                *) echo "Nix flake syntax: outcome unavailable ($NIX_SYNTAX_OUTCOME)." ;;
-              esac
-            fi
-
-            if [ "$NIXOS_BUILD_SUCCEEDED" = "true" ]; then
-              echo "NixOS system closure: built successfully."
-            else
-              case "$NIXOS_BUILD_OUTCOME" in
-                failure) echo "NixOS system closure: build failed." ;;
-                skipped)
-                if [ "$SECRETS_AVAILABLE" != "true" ]; then
-                  echo "NixOS system closure: skipped because the private secrets input was unavailable."
-                else
-                  echo "NixOS system closure: skipped (an earlier workflow step did not complete successfully)."
-                fi
-                ;;
-                cancelled) echo "NixOS system closure: build cancelled." ;;
-                *) echo "NixOS system closure: outcome unavailable ($NIXOS_BUILD_OUTCOME)." ;;
-              esac
-            fi
-
-            if [ "$MACOS_EVAL_SUCCEEDED" = "true" ]; then
-              echo "macOS system derivations: evaluated successfully; building aarch64-darwin outputs is unsupported on Linux CI."
-            else
-              case "$MACOS_EVAL_OUTCOME" in
-                failure) echo "macOS system derivations: evaluation failed; building aarch64-darwin outputs is unsupported on Linux CI." ;;
-                skipped)
-                if [ "$SECRETS_AVAILABLE" != "true" ]; then
-                  echo "macOS system derivations: evaluation skipped because the private secrets input was unavailable; building aarch64-darwin outputs is unsupported on Linux CI."
-                else
-                  echo "macOS system derivations: evaluation skipped (an earlier workflow step did not complete successfully); building aarch64-darwin outputs is unsupported on Linux CI."
-                fi
-                ;;
-                cancelled) echo "macOS system derivations: evaluation cancelled; building aarch64-darwin outputs is unsupported on Linux CI." ;;
-                *) echo "macOS system derivations: outcome unavailable ($MACOS_EVAL_OUTCOME); building aarch64-darwin outputs is unsupported on Linux CI." ;;
-              esac
-            fi
-          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Run validation tests
+        run: python3 -m unittest discover -s tests

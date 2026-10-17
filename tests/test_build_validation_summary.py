@@ -1,95 +1,83 @@
 import os
 import subprocess
 import tempfile
-import textwrap
 import unittest
 from pathlib import Path
 
 
-WORKFLOW = Path(__file__).parents[1] / ".github/workflows/build-validation.yml"
+ROOT = Path(__file__).parents[1]
+WORKFLOW = ROOT / ".github/workflows/build-validation.yml"
+HOOK = ROOT / ".githooks/pre-commit"
 
 
-class ValidationSummaryTests(unittest.TestCase):
+class ValidationWorkflowTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.workflow = WORKFLOW.read_text()
-        cls.summary = cls.workflow.split("      - name: Report validation coverage\n", 1)[1]
 
-    def test_summary_gates_success_claims_on_step_outcomes(self):
-        for step_id, env_name in (
-            ("nix_syntax", "NIX_SYNTAX_SUCCEEDED"),
-            ("nixos_build", "NIXOS_BUILD_SUCCEEDED"),
-            ("macos_eval", "MACOS_EVAL_SUCCEEDED"),
+    def test_workflow_uses_only_credential_free_syntax_and_test_checks(self):
+        for forbidden in ("secrets.", "NIX_SECRETS_DEPLOY_KEY", "ssh-agent", "nix build", "nix eval", "sops"):
+            with self.subTest(forbidden=forbidden):
+                self.assertNotIn(forbidden.lower(), self.workflow.lower())
+
+        self.assertIn("git ls-files -z -- '*.nix'", self.workflow)
+        self.assertIn('nix-instantiate --parse "$file"', self.workflow)
+        self.assertIn("git ls-files -z -- '*.sh'", self.workflow)
+        self.assertIn('bash -n "$file"', self.workflow)
+        self.assertIn("python3 -m unittest discover -s tests", self.workflow)
+        self.assertNotIn("system closure", self.workflow.lower())
+
+
+class ValidationHookTests(unittest.TestCase):
+    def setUp(self):
+        self.hook = HOOK.read_text()
+
+    def test_hook_runs_tracked_source_checks_without_flake_or_secret_access(self):
+        for required in (
+            "git ls-files -z -- '*.nix'",
+            'nix-instantiate --parse "$file"',
+            "git ls-files -z -- '*.sh'",
+            'bash -n "$file"',
+            "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests",
         ):
-            with self.subTest(step=step_id):
-                self.assertIn(
-                    f"{env_name}: ${{{{ steps.{step_id}.outcome == 'success' }}}}",
-                    self.summary,
-                )
-                self.assertRegex(
-                    self.summary,
-                    rf'if \[ "\${env_name}" = "true" \]; then',
-                )
+            with self.subTest(check=required):
+                self.assertIn(required, self.hook)
 
-    def run_summary(self, *, secrets_available, fork, syntax, build, macos):
-        script = textwrap.dedent(self.summary.split("        run: |\n", 1)[1])
-        with tempfile.NamedTemporaryFile() as summary:
-            env = os.environ | {
-                "GITHUB_STEP_SUMMARY": summary.name,
-                "SECRETS_AVAILABLE": secrets_available,
-                "PULL_REQUEST_FORK": fork,
-                "NIX_SYNTAX_OUTCOME": syntax,
-                "NIX_SYNTAX_SUCCEEDED": str(syntax == "success").lower(),
-                "NIXOS_BUILD_OUTCOME": build,
-                "NIXOS_BUILD_SUCCEEDED": str(build == "success").lower(),
-                "MACOS_EVAL_OUTCOME": macos,
-                "MACOS_EVAL_SUCCEEDED": str(macos == "success").lower(),
-            }
-            subprocess.run(["bash", "-e", "-c", script], env=env, check=True)
-            summary.seek(0)
-            return summary.read().decode()
+        for forbidden in ("nix build", "nix eval", "nix flake", "sops", "ssh-agent"):
+            with self.subTest(forbidden=forbidden):
+                self.assertNotIn(forbidden, self.hook.lower())
 
-    def test_failed_build_is_not_reported_as_built(self):
-        summary = self.run_summary(
-            secrets_available="true", fork="false", syntax="success", build="failure", macos="success"
-        )
-        self.assertIn("NixOS system closure: build failed.", summary)
-        self.assertNotIn("NixOS system closure: built successfully.", summary)
+    def test_hook_stops_when_nix_syntax_check_fails(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            failing_nix = Path(temp_dir) / "nix-instantiate"
+            failing_nix.write_text("#!/bin/sh\\nexit 1\\n")
+            failing_nix.chmod(0o755)
+            result = subprocess.run(
+                [str(HOOK)],
+                env=os.environ | {"PATH": f"{temp_dir}:{os.environ['PATH']}"},
+                capture_output=True,
+                text=True,
+            )
 
-    def test_fork_skips_secret_dependent_checks_but_reports_syntax(self):
-        summary = self.run_summary(
-            secrets_available="false", fork="true", syntax="success", build="skipped", macos="skipped"
-        )
-        self.assertIn("Nix flake syntax: passed.", summary)
-        self.assertIn("NixOS system closure: skipped because the private secrets input was unavailable.", summary)
-        self.assertIn("macOS system derivations: evaluation skipped", summary)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertNotIn("Ran ", result.stdout + result.stderr)
 
-    def test_summary_distinguishes_failure_skip_and_unsupported_build(self):
-        for phrase in (
-            "Nix flake syntax: failed.",
-            "NixOS system closure: build failed.",
-            "NixOS system closure: skipped because the private secrets input was unavailable.",
-            "macOS system derivations: evaluation failed;",
-            "building aarch64-darwin outputs is unsupported on Linux CI.",
+    def test_hook_is_executable(self):
+        self.assertTrue(HOOK.stat().st_mode & 0o111)
+
+    def test_documentation_covers_setup_prerequisites_and_limits(self):
+        docs = (ROOT / "docs/build-validation.md").read_text()
+        for required in (
+            "git config core.hooksPath .githooks",
+            "nix-instantiate",
+            "bash",
+            "python3",
+            "bypassable",
+            "private `secrets` flake input",
+            "do not validate host builds",
         ):
-            with self.subTest(phrase=phrase):
-                self.assertIn(phrase, self.summary)
-
-    def test_secret_is_not_in_summary_step_environment_or_output(self):
-        summary_env = self.summary.split("        run: |", 1)[0]
-        summary_run = self.summary.split("        run: |", 1)[1]
-        self.assertNotIn("NIX_SECRETS_DEPLOY_KEY", summary_env)
-        self.assertNotIn("NIX_SECRETS_DEPLOY_KEY", summary_run)
-
-    def test_fork_and_trusted_secret_gating_is_preserved(self):
-        self.assertIn(
-            "steps.secrets.outputs.available != 'true' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork != true)",
-            self.workflow,
-        )
-        self.assertIn(
-            "if: steps.secrets.outputs.available == 'true'\n        uses: webfactory/ssh-agent",
-            self.workflow,
-        )
+            with self.subTest(detail=required):
+                self.assertIn(required, docs)
 
 
 if __name__ == "__main__":

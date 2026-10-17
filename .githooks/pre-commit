@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root=$(git rev-parse --show-toplevel)
+cd "$repo_root"
+
+while IFS= read -r -d '' file; do
+  nix-instantiate --parse "$file" > /dev/null
+done < <(git ls-files -z -- '*.nix')
+
+while IFS= read -r -d '' file; do
+  bash -n "$file"
+done < <(git ls-files -z -- '*.sh')
+
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests
