@@ -55,7 +55,7 @@ MOCK
 run_rebuild() {
   local repo=$1
   rm -f "$tmp/rebuild-ran"
-  (cd "$repo" && PATH="$tmp/bin:$PATH" MOCK_STATE="$tmp" HOSTNAME=mac-mini bash "$script")
+  (cd "$repo" && PATH="$tmp/bin:$PATH" MOCK_STATE="$tmp" HOSTNAME=mac-mini bash "$script" --host mac-mini)
 }
 
 run_failed_rebuild() {
@@ -68,7 +68,7 @@ run_update_secrets() {
   local repo=$1
   local update_lock=${2:-0}
   rm -f "$tmp/rebuild-ran"
-  (cd "$repo" && PATH="$tmp/bin:$PATH" MOCK_STATE="$tmp" MOCK_UPDATE_LOCK="$update_lock" HOSTNAME=mac-mini bash "$script" --update-secrets)
+  (cd "$repo" && PATH="$tmp/bin:$PATH" MOCK_STATE="$tmp" MOCK_UPDATE_LOCK="$update_lock" HOSTNAME=mac-mini bash "$script" --host mac-mini --update-secrets)
 }
 
 # Untracked content must block deployment without changing the existing index.

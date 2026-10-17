@@ -50,6 +50,9 @@ cat > "$MOCK_BIN/git" <<'MOCK'
 printf 'git' >> "$MOCK_LOG"
 printf ' <%s>' "$@" >> "$MOCK_LOG"
 printf '\n' >> "$MOCK_LOG"
+if [[ "$1 $2 $3" == "diff --cached --quiet" ]]; then
+  exit 1
+fi
 MOCK
 cat > "$MOCK_BIN/date" <<'MOCK'
 #!/usr/bin/env bash
