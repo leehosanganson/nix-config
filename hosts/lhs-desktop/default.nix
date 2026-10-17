@@ -17,7 +17,7 @@
       ../../modules/ime/jp.nix
       ../../modules/ime/zh.nix
 
-      # Choose one
+      # Plasma is a retained alternative; enable it instead of Hyprland when needed.
       # ../../modules/nixos/plasma.nix
       ../../modules/nixos/hyprland.nix
 

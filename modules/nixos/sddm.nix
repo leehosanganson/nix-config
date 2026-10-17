@@ -1,4 +1,5 @@
-# SDDM is a display manager for X11 and Wayland
+# Optional SDDM configuration; currently not imported by any host.
+# It requires the Stylix theme options supplied by the NixOS flake.
 { pkgs
 , config
 , ...
