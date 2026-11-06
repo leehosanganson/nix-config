@@ -46,7 +46,7 @@
         "MOZ_ENABLE_WAYLAND,1"
         "XDG_SESSION_TYPE,wayland"
         "XDG_SESSION_DESKTOP,Hyprland"
-        "XDG_PICTURES_DIR,$HOME/pictures"
+        "XDG_PICTURES_DIR,$HOME/Pictures"
         "QT_QPA_PLATFORMTHEME,qt6ct"
       ];
 
