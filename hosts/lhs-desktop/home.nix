@@ -49,6 +49,5 @@
     runelite
     zathura
     vlc
-    gthumb
   ];
 }
