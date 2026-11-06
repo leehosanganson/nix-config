@@ -8,6 +8,12 @@
     homeDirectory = "/home/ansonlee";
   };
 
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+    setSessionVariables = true;
+  };
+
   imports = [
     ../../modules/home/core
     ./variables.nix
@@ -49,5 +55,6 @@
     runelite
     zathura
     vlc
+    gthumb
   ];
 }
