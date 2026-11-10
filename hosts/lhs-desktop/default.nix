@@ -79,6 +79,8 @@
     };
   };
 
+  services.ratbagd.enable = true;
+
   # Networking
   networking = {
     hostName = "lhs-desktop"; # Define your hostname.
